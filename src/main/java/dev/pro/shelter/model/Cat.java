@@ -2,19 +2,37 @@ package dev.pro.shelter.model;
 
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
 public class Cat {
-    long petId;
-    String name;
-    Byte[] photo;
-    int age;
-    String bread;
-    String diet; // выбор из списка параметров
-    String habits; // свободное описание
-    String status; // выбор из списка параметров: in a shelter; probation; finally given to the owner
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long petId;
+    private String name;
+    private Byte[] photo;
+    private int age;
+    private String bread;
+    private boolean healthRestrictions;
+    private String diet; // выбор из списка параметров
+    private String habits; // свободное описание
+    private String status; // выбор из списка параметров: in a shelter; probation; finally given to the owner
+
+    public Cat(long petId, String name, Byte[] photo, int age, String bread, boolean healthRestrictions, String diet, String habits, String status) {
+        this.petId = petId;
+        this.name = name;
+        this.photo = photo;
+        this.age = age;
+        this.bread = bread;
+        this.healthRestrictions = healthRestrictions;
+        this.diet = diet;
+        this.habits = habits;
+        this.status = status;
+    }
 
     public Cat() {
     }
@@ -59,6 +77,14 @@ public class Cat {
         this.bread = bread;
     }
 
+    public boolean isHealthRestrictions() {
+        return healthRestrictions;
+    }
+
+    public void setHealthRestrictions(boolean healthRestrictions) {
+        this.healthRestrictions = healthRestrictions;
+    }
+
     public String getDiet() {
         return diet;
     }
@@ -87,12 +113,12 @@ public class Cat {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Cat cat)) return false;
-        return getAge() == cat.getAge() && Objects.equals(getName(), cat.getName()) && Arrays.equals(getPhoto(), cat.getPhoto()) && Objects.equals(getBread(), cat.getBread()) && Objects.equals(getDiet(), cat.getDiet()) && Objects.equals(getHabits(), cat.getHabits()) && Objects.equals(getStatus(), cat.getStatus());
+        return getAge() == cat.getAge() && isHealthRestrictions() == cat.isHealthRestrictions() && Objects.equals(getName(), cat.getName()) && Arrays.equals(getPhoto(), cat.getPhoto()) && Objects.equals(getBread(), cat.getBread()) && Objects.equals(getDiet(), cat.getDiet()) && Objects.equals(getHabits(), cat.getHabits()) && Objects.equals(getStatus(), cat.getStatus());
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(getName(), getAge(), getBread(), getDiet(), getHabits(), getStatus());
+        int result = Objects.hash(getName(), getAge(), getBread(), isHealthRestrictions(), getDiet(), getHabits(), getStatus());
         result = 31 * result + Arrays.hashCode(getPhoto());
         return result;
     }
@@ -105,6 +131,7 @@ public class Cat {
                 ", photo=" + Arrays.toString(photo) +
                 ", age=" + age +
                 ", bread='" + bread + '\'' +
+                ", healthRestrictions=" + healthRestrictions +
                 ", diet='" + diet + '\'' +
                 ", habits='" + habits + '\'' +
                 ", status='" + status + '\'' +
