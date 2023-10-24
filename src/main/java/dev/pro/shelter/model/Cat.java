@@ -3,7 +3,7 @@ package dev.pro.shelter.model;
 
 import javax.persistence.Entity;
 
-@Entity(name = "Cat")
+@Entity(name = "cat")
 public class Cat extends Pet {
 
 }
