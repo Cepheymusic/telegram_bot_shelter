@@ -4,9 +4,9 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.SendMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -14,8 +14,10 @@ import java.util.List;
 @Service
 public class TelegramBotUpdatesListener implements UpdatesListener {
     private Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
-    @Autowired
-    private TelegramBot telegramBot;
+    private final TelegramBot telegramBot;
+    public TelegramBotUpdatesListener(TelegramBot telegramBot) {
+        this.telegramBot = telegramBot;
+    }
 
     @PostConstruct
     public void init() {
@@ -23,6 +25,24 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     }
     @Override
     public int process(List<Update> updates) {
+        updates.forEach(update -> {
+            logger.info("Processing update: {}", update);
+            if (update.message().text().equals("/start")) {
+                long idChat = update.message().chat().id();
+                SendMessage message = new SendMessage(idChat, "You send /start");
+                telegramBot.execute(message);
+            }
+            if (update.message().text()==null) {
+                long idChat = update.message().chat().id();
+                SendMessage message = new SendMessage(idChat, "failed start");
+                telegramBot.execute(message);
+            }
+            else{
+                long idChat = update.message().chat().id();
+                SendMessage message = new SendMessage(idChat, "Unknown command");
+                telegramBot.execute(message);
+            }
+        });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
 }
