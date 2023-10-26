@@ -9,8 +9,8 @@ public class CatAdopter extends Users {
     private String address;
 
 
-    public CatAdopter(Integer id, long chatId, String username, Contact contact, Long catId) {
-        super(id, chatId, username, contact);
+    public CatAdopter(Integer id, long chatId, Contact contact, Long catId) {
+        super(id, chatId, contact);
         this.catId = catId;
     }
 

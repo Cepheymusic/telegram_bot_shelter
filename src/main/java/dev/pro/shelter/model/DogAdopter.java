@@ -8,8 +8,8 @@ public class DogAdopter extends Users {
     private Long dogId;
     private String address;
 
-    public DogAdopter(Integer id, long chatId, String username, Contact contact, Long dogId, String address) {
-        super(id, chatId, username, contact);
+    public DogAdopter(Integer id, long chatId, Contact contact, Long dogId, String address) {
+        super(id, chatId, contact);
         this.dogId = dogId;
         this.address = address;
     }

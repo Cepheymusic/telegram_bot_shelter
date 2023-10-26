@@ -10,8 +10,7 @@
 
 create table users(
 id serial primary key,
-chatId bigint,
-username varchar
+chatId bigint
 );
 
 create table cat_adopter(

@@ -10,14 +10,13 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Long chatId;
-    private String username;
+
     @Embedded
     private Contact contact;
 
-    public Users(Integer id, Long chatId, String username, Contact contact) {
+    public Users(Integer id, Long chatId, Contact contact) {
         this.id = id;
         this.chatId = chatId;
-        this.username = username;
         this.contact = contact;
     }
 
@@ -40,13 +39,6 @@ public class Users {
         this.chatId = chatId;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public Contact getContact() {
         return contact;
@@ -59,21 +51,20 @@ public class Users {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Users user)) return false;
-        return getChatId() == user.getChatId() && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getContact(), user.getContact());
+        if (!(o instanceof Users users)) return false;
+        return Objects.equals(getChatId(), users.getChatId()) && Objects.equals(getContact(), users.getContact());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getChatId(), getUsername(), getContact());
+        return Objects.hash(getChatId(), getContact());
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Users{" +
                 "id=" + id +
                 ", chatId=" + chatId +
-                ", username='" + username + '\'' +
                 ", contact=" + contact +
                 '}';
     }
