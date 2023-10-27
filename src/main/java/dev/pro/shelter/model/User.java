@@ -1,64 +1,120 @@
-package dev.pro.shelter.model;
+// package dev.pro.shelter.model;
 
-import javax.persistence.*;
-import java.util.List;
-import java.util.Objects;
+// import javax.persistence.*;
 
-//@Entity
-//@Table(name = "user")
-public class User {
-    private String name;
-    private String numberPhone;
-    private String mail;
-    private Long chatId;
-//    @OneToMany(mappedBy = "cat, dog") //?????????
-//    private List<Pet> pets;
+// import java.util.List;
+// import java.util.Objects;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(name, user.name) && Objects.equals(numberPhone, user.numberPhone) && Objects.equals(mail, user.mail);
-    }
+// //@Entity
+// //@Table(name = "user")
+// public class User {
+//     private String name;
+//     private String numberPhone;
+//     private String mail;
+//     private Long chatId;
+// //    @OneToMany(mappedBy = "cat, dog") //?????????
+// //    private List<Pet> pets;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, numberPhone, mail);
-    }
+//     @Override
+//     public boolean equals(Object o) {
+//         if (this == o) return true;
+//         if (o == null || getClass() != o.getClass()) return false;
+//         User user = (User) o;
+//         return Objects.equals(name, user.name) && Objects.equals(numberPhone, user.numberPhone) && Objects.equals(mail, user.mail);
+//     }
 
-    public User(String name, String numberPhone, String mail) {
-        this.name = name;
-        this.numberPhone = numberPhone;
-        this.mail = mail;
-    }
+//     @Override
+//     public int hashCode() {
+//         return Objects.hash(name, numberPhone, mail);
+//     }
 
-    public User(Long chatId) {
-        this.chatId = chatId;
-    }
+//     public User(String name, String numberPhone, String mail) {
+//         this.name = name;
+//         this.numberPhone = numberPhone;
+//         this.mail = mail;
+//     }
 
-    public String getName() {
-        return name;
-    }
+//     public User(Long chatId) {
+//         this.chatId = chatId;
+// =======
+// import java.util.Objects;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+// @Entity
+// @Table(name = "user")
+// public class User {
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Integer id;
+//     private String name;
+//     private String numberPhone;
+//     private String mail;
 
-    public String getNumberPhone() {
-        return numberPhone;
-    }
+//     public User(Integer id, String name, String numberPhone, String mail) {
+//         this.id = id;
+//         this.name = name;
+//         this.numberPhone = numberPhone;
+//         this.mail = mail;
+//     }
 
-    public void setNumberPhone(String numberPhone) {
-        this.numberPhone = numberPhone;
-    }
+//     public User() {
+//     }
 
-    public String getMail() {
-        return mail;
-    }
+//     public Integer getId() {
+//         return id;
+//     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
+//     public void setId(Integer id) {
+//         this.id = id;
+// >>>>>>> dev
+//     }
 
-}
+//     public String getName() {
+//         return name;
+//     }
+
+//     public void setName(String name) {
+//         this.name = name;
+//     }
+
+//     public String getNumberPhone() {
+//         return numberPhone;
+//     }
+
+//     public void setNumberPhone(String numberPhone) {
+//         this.numberPhone = numberPhone;
+//     }
+
+//     public String getMail() {
+//         return mail;
+//     }
+
+//     public void setMail(String mail) {
+//         this.mail = mail;
+//     }
+
+// <<<<<<< feature-1
+// =======
+//     @Override
+//     public boolean equals(Object o) {
+//         if (this == o) return true;
+//         if (o == null || getClass() != o.getClass()) return false;
+//         User user = (User) o;
+//         return Objects.equals(name, user.name) && Objects.equals(numberPhone, user.numberPhone) && Objects.equals(mail, user.mail);
+//     }
+
+//     @Override
+//     public int hashCode() {
+//         return Objects.hash(id, name, numberPhone, mail);
+//     }
+
+//     @Override
+//     public String toString() {
+//         return "User{" +
+//                 "id=" + id +
+//                 ", name='" + name + '\'' +
+//                 ", numberPhone='" + numberPhone + '\'' +
+//                 ", mail='" + mail + '\'' +
+//                 '}';
+//     }
+// >>>>>>> dev
+// }
