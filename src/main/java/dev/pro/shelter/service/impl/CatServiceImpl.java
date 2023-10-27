@@ -1,9 +1,10 @@
-package dev.pro.shelter.service;
+package dev.pro.shelter.service.impl;
 
 import dev.pro.shelter.Exception.CatNotFoundException;
 import dev.pro.shelter.model.Cat;
 
 import dev.pro.shelter.repository.CatRepository;
+import dev.pro.shelter.service.CatService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
