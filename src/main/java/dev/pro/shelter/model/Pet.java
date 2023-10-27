@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Entity
+@MappedSuperclass
 public abstract class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)

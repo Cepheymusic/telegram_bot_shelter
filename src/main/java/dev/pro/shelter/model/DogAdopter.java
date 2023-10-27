@@ -1,12 +1,23 @@
 package dev.pro.shelter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class DogAdopter extends Users {
     private Long dogId;
     private String address;
+
+    @OneToMany(mappedBy = "dog_adopter")
+    @JsonIgnore
+    private List<Dog> dogs;
 
     public DogAdopter(Integer id, long chatId, Contact contact, Long dogId, String address) {
         super(id, chatId, contact);

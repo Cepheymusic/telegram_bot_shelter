@@ -1,18 +1,26 @@
 package dev.pro.shelter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
-@Entity
+//@Entity
+@MappedSuperclass
 @Table(name = "users")
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
     private Long chatId;
 
     @Embedded
     private Contact contact;
+
+    @OneToMany(mappedBy = "report")
+    @JsonIgnore
+    private List<Report> reports;
 
     public Users(Integer id, Long chatId, Contact contact) {
         this.id = id;

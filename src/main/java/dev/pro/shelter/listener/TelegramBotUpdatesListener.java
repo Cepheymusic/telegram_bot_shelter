@@ -7,6 +7,7 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
+import dev.pro.shelter.service.impl.UsersServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,12 @@ import java.util.List;
 @Service
 public class TelegramBotUpdatesListener implements UpdatesListener {
     private Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
-
     private final TelegramBot telegramBot;
-    public TelegramBotUpdatesListener(TelegramBot telegramBot) {
+    private UsersServiceImpl userService;
+
+    public TelegramBotUpdatesListener(TelegramBot telegramBot, UsersServiceImpl userService) {
         this.telegramBot = telegramBot;
+        this.userService = userService;
     }
 
     @PostConstruct
@@ -31,13 +34,34 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     public int process(List<Update> updates) {
         updates.forEach(update -> {
             logger.info("Processing update: {}", update);
-            if (update.message().text().equals("/start")) {
+            // Process your updates here
+            String message = update.message().text();
+            if (update.message() == null) {
+                logger.error("Message is null");
+                return;
+            } else {
+                logger.info("Processing message: \"{}\"", message);
+            }
+
+            if (message==null)
+            {return;}
+
+            if (message.equals("/start")) {
                 long idChat = update.message().chat().id();
-                SendMessage message = new SendMessage(idChat, "You send /start");
-                telegramBot.execute(message);
+                if (userService.existsUserByChatId(idChat)) {
+                    replyToMessage(update, "Приветствуем старого знакомого! Выбери, пожалуйста, приют для " +
+                            "продолжения работы");
+                } else {
+                    replyToMessage(update, "Приветствуем нового гостя! Наш бот поможет тебе выбрать друга из приюта. " +
+                            "Для продолжения работы выбери, пожалуйста, приют");
+                    userService.createUser(update.message().chat().id());
+                }
             }
         });
-
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
+    }
+
+    private void replyToMessage(Update update, String text) {
+        telegramBot.execute(new SendMessage(update.message().chat().id(), text));
     }
 }
