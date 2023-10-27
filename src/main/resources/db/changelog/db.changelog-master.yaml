@@ -5,3 +5,7 @@ databaseChangeLog:
   - include:
       relativeToChangelogFile: true
       file: pet.sql
+  - include:
+      relativeToChangelogFile: true
+      file: users.sql
+
