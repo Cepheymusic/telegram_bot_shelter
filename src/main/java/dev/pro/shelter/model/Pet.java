@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 
-
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Pet {
@@ -110,9 +109,16 @@ public abstract class Pet {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Pet pet)) return false;
-        return getAge() == pet.getAge() && isHealthRestrictions() == pet.isHealthRestrictions() && Objects.equals(getName(), pet.getName()) && Arrays.equals(getPhoto(), pet.getPhoto()) && Objects.equals(getBreed(), pet.getBreed()) && Objects.equals(getDiet(), pet.getDiet()) && Objects.equals(getHabits(), pet.getHabits()) && Objects.equals(getStatus(), pet.getStatus());
+        if (o == null || getClass() != o.getClass()) return false;
+        Pet pet = (Pet) o;
+        return age == pet.age && healthRestrictions == pet.healthRestrictions && Objects.equals(name, pet.name) && Arrays.equals(photo, pet.photo) && Objects.equals(breed, pet.breed) && Objects.equals(diet, pet.diet) && Objects.equals(habits, pet.habits) && Objects.equals(status, pet.status);
     }
+    //    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Pet pet)) return false;
+//        return getAge() == pet.getAge() && isHealthRestrictions() == pet.isHealthRestrictions() && Objects.equals(getName(), pet.getName()) && Arrays.equals(getPhoto(), pet.getPhoto()) && Objects.equals(getBreed(), pet.getBreed()) && Objects.equals(getDiet(), pet.getDiet()) && Objects.equals(getHabits(), pet.getHabits()) && Objects.equals(getStatus(), pet.getStatus());
+//    }
 
     @Override
     public int hashCode() {

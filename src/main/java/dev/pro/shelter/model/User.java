@@ -1,34 +1,40 @@
 package dev.pro.shelter.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name = "user")
+//@Entity
+//@Table(name = "user")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private String name;
     private String numberPhone;
     private String mail;
+    private Long chatId;
+//    @OneToMany(mappedBy = "cat, dog") //?????????
+//    private List<Pet> pets;
 
-    public User(Integer id, String name, String numberPhone, String mail) {
-        this.id = id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(name, user.name) && Objects.equals(numberPhone, user.numberPhone) && Objects.equals(mail, user.mail);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, numberPhone, mail);
+    }
+
+    public User(String name, String numberPhone, String mail) {
         this.name = name;
         this.numberPhone = numberPhone;
         this.mail = mail;
     }
 
-    public User() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public User(Long chatId) {
+        this.chatId = chatId;
     }
 
     public String getName() {
@@ -55,26 +61,4 @@ public class User {
         this.mail = mail;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(name, user.name) && Objects.equals(numberPhone, user.numberPhone) && Objects.equals(mail, user.mail);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, numberPhone, mail);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", numberPhone='" + numberPhone + '\'' +
-                ", mail='" + mail + '\'' +
-                '}';
-    }
 }
