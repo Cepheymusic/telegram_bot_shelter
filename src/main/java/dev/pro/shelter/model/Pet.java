@@ -8,7 +8,7 @@ import java.util.Objects;
 @MappedSuperclass
 public abstract class Pet {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private Byte[] photo;

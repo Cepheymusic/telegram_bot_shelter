@@ -7,19 +7,14 @@ id serial primary key,
 chatId real
 );
 
---create table contact(
---name varchar(30),
---surname varchar(30),
---phone varchar(10),
---email varchar
---);
-
 create table cat_adopter(
+id serial primary key,
 catId int,
 address varchar
 );
 
 create table dog_adopter(
+id serial primary key,
 dogId int,
 address varchar
 );

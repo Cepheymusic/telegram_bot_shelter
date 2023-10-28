@@ -10,16 +10,15 @@ import com.pengrad.telegrambot.request.SendMessage;
 import dev.pro.shelter.model.Contact;
 import dev.pro.shelter.model.EnumsInfo;
 import dev.pro.shelter.model.EnumsInfo2;
-import dev.pro.shelter.model.Users;
 import dev.pro.shelter.service.impl.UsersServiceImpl;
 import dev.pro.shelter.tools.Parsers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+
 
 @Service
 public class TelegramBotUpdatesListener implements UpdatesListener {
@@ -39,7 +38,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
     @Override
     public int process(List<Update> updates) {
-        try {
             updates.forEach(update -> {
                 logger.info("Processing update: {}", update);
                 String message = update.message().text();
@@ -159,8 +157,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     }
                 }
             });
-        }catch (NullPointerException e){
-            throw new RuntimeException(e);}
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
 

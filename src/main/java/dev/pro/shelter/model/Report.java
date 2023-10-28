@@ -1,22 +1,23 @@
-//package dev.pro.shelter.model;
-//
-//import javax.persistence.*;
-//import java.time.LocalDateTime;
-//import java.util.List;
-//@Entity
-//public class Report {
-//    @Id
-//    @GeneratedValue
-//    private long reportId;
-//    private long userId;
-//    private String namePet;
-//    private Byte[] photoPet;
-//    private String diet; // выбор из списка параметров
-//    private String habits; // свободное описание
-//    private byte probationDays;
-//    private LocalDateTime lastReportDate;
-//    private boolean missedOneDay;
-//    private boolean missedTwoDay;
+package dev.pro.shelter.model;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
+@Entity
+@Table(name = "reports")
+public class Report {
+    @Id
+    @GeneratedValue
+    private long reportId;
+    private long userId;
+    private long petId;
+    private Byte[] photoPet;
+    private String diet; // выбор из списка параметров
+    private String habits; // свободное описание
+    private byte probationDays;
+    private LocalDateTime lastReportDate;
+    private boolean missedOneDay;
+    private boolean missedTwoDay;
 //
 //
 ////    @ManyToMany
@@ -50,4 +51,4 @@
 ////    @Lob
 ////    private byte[] data;
 //
-//}
+}
