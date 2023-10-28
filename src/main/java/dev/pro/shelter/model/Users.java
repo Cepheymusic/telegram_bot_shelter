@@ -1,26 +1,27 @@
 package dev.pro.shelter.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
-//@Entity
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private Long chatId;
 
     @Embedded
     private Contact contact;
 
-    @OneToMany(mappedBy = "report")
-    @JsonIgnore
-    private List<Report> reports;
+//    @OneToMany(mappedBy = "report")
+//    @JsonIgnore
+//    private List<Report> reports;
 
     public Users(Integer id, Long chatId, Contact contact) {
         this.id = id;

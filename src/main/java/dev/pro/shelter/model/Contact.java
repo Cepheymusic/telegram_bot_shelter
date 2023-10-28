@@ -1,13 +1,20 @@
 package dev.pro.shelter.model;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.util.Objects;
 @Embeddable
 public class Contact {
+    @Column(name = "name")
     private String name;
+    @Column(name = "surname")
     private String surname;
+    @Column(name = "phone")
     private String phone;
+    @Column(name = "email")
     private String email;
+
+
 
     public Contact(String name, String surname, String phone, String email) {
         this.name = name;

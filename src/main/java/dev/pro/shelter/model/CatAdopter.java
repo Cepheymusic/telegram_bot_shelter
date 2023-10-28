@@ -2,22 +2,21 @@ package dev.pro.shelter.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "cat_adopter")
 public class CatAdopter extends Users {
+    @Column(name = "cat_id")
     private Long catId;
+    @Column(name = "address")
     private String address;
 
-    @OneToMany(mappedBy = "cat_adopter")
-    @JsonIgnore
-    private List<Cat> cats;
+//    @OneToMany(mappedBy = "cat_adopter")
+//    @JsonIgnore
+//    private List<Cat> cats;
 
 
     public CatAdopter(Integer id, long chatId, Contact contact, Long catId) {
