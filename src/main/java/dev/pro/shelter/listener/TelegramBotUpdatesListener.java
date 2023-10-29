@@ -24,7 +24,7 @@ import java.util.List;
 public class TelegramBotUpdatesListener implements UpdatesListener {
     private Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
     private final TelegramBot telegramBot;
-    private UsersServiceImpl userService;
+    private final UsersServiceImpl userService;
 
     public TelegramBotUpdatesListener(TelegramBot telegramBot, UsersServiceImpl userService) {
         this.telegramBot = telegramBot;
@@ -156,6 +156,9 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                         }
                     }
                 }
+
+
+
             });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }

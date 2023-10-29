@@ -6,19 +6,27 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name = "dog_adopter")
-public class DogAdopter{
-    @Id
-    private int id;
-    @Column(name = "dog_id")
-    private Long dogId;
-    @Column(name = "address")
-    private String address;
+@Entity(name = "dog_adopter")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class DogAdopter extends PetAdopter{
+
+    private Integer dogId;
+
+
+    public DogAdopter(Integer id, Long chatId, String name, String surname, String phone, String email, String address) {
+        super(id, chatId, name, surname, phone, email, address);
+    }
 
 //    @OneToMany(mappedBy = "dog_adopter")
 //    @JsonIgnore
 //    private List<Dog> dogs;
 
 
+    public Integer getDogId() {
+        return dogId;
+    }
+
+    public void setDogId(Integer dogId) {
+        this.dogId = dogId;
+    }
 }

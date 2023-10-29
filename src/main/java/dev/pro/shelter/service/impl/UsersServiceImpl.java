@@ -26,7 +26,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users createUser(Long chatId) {
-        logger.info("The Create method was called with data {}", chatId);
+        logger.info("The Create method was called with chatId {}", chatId);
         Users createUsers = new Users();
         createUsers.setChatId(chatId);
         Users newUser = repository.save(createUsers);
@@ -36,7 +36,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users findByChatId(Long chatId) {
-        logger.info("The FindByChatId method was called with data {}", chatId);
+        logger.info("The FindByChatId method was called with chatId {}", chatId);
         Optional<Users> user = repository.findByChatId(chatId);
         if (user.isEmpty()) {
             throw new UsersException("failure identification");

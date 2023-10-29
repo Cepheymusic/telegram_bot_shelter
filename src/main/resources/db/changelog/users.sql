@@ -4,17 +4,17 @@
 
 create table users(
 id serial primary key,
-chatId real
+chat_id bigint
 );
 
 create table cat_adopter(
 id serial primary key,
-catId int,
+cat_id int,
 address varchar
 );
 
 create table dog_adopter(
 id serial primary key,
-dogId int,
+dog_id int,
 address varchar
 );

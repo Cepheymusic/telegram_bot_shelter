@@ -19,17 +19,17 @@ public class CatController {
     }
 
     @GetMapping("{id}")
-    public Cat readCat(@PathVariable long id) {
+    public Cat readCat(@PathVariable int id) {
         return catService.readCat(id);
     }
 
-    @PutMapping("/{id}")
-    public Cat updateCat(@PathVariable long id, @RequestBody Cat cat) {
-        return catService.updateCat(id, cat);
+    @PutMapping
+    public Cat updateCat(@RequestBody Cat cat) {
+        return catService.updateCat(cat);
     }
 
     @DeleteMapping("/{id}")
-    public Cat deleteCat(@PathVariable long id) {
+    public Cat deleteCat(@PathVariable int id) {
         return catService.deleteCat(id);
     }
 }

@@ -9,7 +9,7 @@ public class Dog extends Pet{
 //    @JoinColumn(name = "dog_adopter_id")
 //    private DogAdopter adopter;
 
-    public Dog(Long id, String name, Byte[] photo, int age, String breed, boolean healthRestrictions, String diet, String habits, String status) {
-        super(id, name, photo, age, breed, healthRestrictions, diet, habits, status);
+    public Dog(Integer id, String name, Byte[] photo, int age, String breed, boolean healthRestrictions, String status) {
+        super(id, name, photo, age, breed, healthRestrictions, status);
     }
 }

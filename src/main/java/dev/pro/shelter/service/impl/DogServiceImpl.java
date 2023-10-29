@@ -32,7 +32,7 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
-    public Dog readDog(Long id) {
+    public Dog readDog(int id) {
         logger.info("Вызван метод read с данными" + id);
         Optional<Dog> searchDog = dogRepository.findById(id);
         if (searchDog.isEmpty()) {
@@ -44,9 +44,9 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
-    public Dog updateDog(Long id, Dog dog) {
-        logger.info("Вызван метод update с данными: {],{}" + id, dog);
-        if (dogRepository.findById(id).isEmpty()) {
+    public Dog updateDog(Dog dog) {
+        logger.info("Вызван метод update с данными: " + dog);
+        if (dogRepository.findById(dog.getId()).isEmpty()) {
             throw new DogNotFoundException("Собакена нет");
         }
         Dog updateDog = dogRepository.save(dog);
@@ -55,7 +55,7 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
-    public Dog deleteDog(Long id) {
+    public Dog deleteDog(int id) {
         logger.info("Вызван метод delete с данными" + id);
         Optional<Dog> searchCat = dogRepository.findById(id);
         if (searchCat.isEmpty()) {
