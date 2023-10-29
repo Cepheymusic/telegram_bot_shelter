@@ -23,6 +23,10 @@ public class Contact {
         this.email = email;
     }
 
+//    public Contact() {
+//
+//    }
+
 
     public String getName() {
         return name;
@@ -59,13 +63,14 @@ public class Contact {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Contact contact)) return false;
-        return Objects.equals(getName(), contact.getName()) && Objects.equals(getSurname(), contact.getSurname()) && Objects.equals(getPhone(), contact.getPhone()) && Objects.equals(getEmail(), contact.getEmail());
+        if (o == null || getClass() != o.getClass()) return false;
+        Contact contact = (Contact) o;
+        return Objects.equals(name, contact.name) && Objects.equals(surname, contact.surname) && Objects.equals(phone, contact.phone) && Objects.equals(email, contact.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getSurname(), getPhone(), getEmail());
+        return Objects.hash(name, surname, phone, email);
     }
 
     @Override

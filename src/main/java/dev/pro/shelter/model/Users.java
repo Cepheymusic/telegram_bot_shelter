@@ -57,23 +57,24 @@ public class Users {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Users users)) return false;
-        return Objects.equals(getChatId(), users.getChatId()) && Objects.equals(getContact(), users.getContact());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getChatId(), getContact());
-    }
-
-    @Override
     public String toString() {
         return "Users{" +
                 "id=" + id +
                 ", chatId=" + chatId +
                 ", contact=" + contact +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users = (Users) o;
+        return Objects.equals(id, users.id) && Objects.equals(chatId, users.chatId) && Objects.equals(contact, users.contact);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, chatId, contact);
     }
 }
