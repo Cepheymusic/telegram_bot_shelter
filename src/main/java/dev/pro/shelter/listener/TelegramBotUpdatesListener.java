@@ -124,13 +124,14 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 } else if (call_data2.equals("sendContact")) {
                     SendMessage messageSendContact = new SendMessage(idChat2, EnumsInfo.SEND_CONTACT.getText());
                     telegramBot.execute(messageSendContact);
-                    String contactMessage = update.message().text();
-                    if (contactMessage.isEmpty()) {
-                        throw new RuntimeException();
-                    } else {
-                        addContactToUser(contactMessage, idChat2);
-                        SendMessage dataRecordingMessage = new SendMessage(idChat2, "Данные сохранены");
-                        telegramBot.execute(dataRecordingMessage);
+                    if (update.message() != null) {
+                        if (update.message().text().startsWith("/contact")) {
+                            String contactMessage = update.message().text();
+                            long idChat5 = update.message().chat().id();
+                            addContactToUser(contactMessage, idChat5);
+                            SendMessage dataRecordingMessage = new SendMessage(idChat5, "Данные сохранены");
+                            telegramBot.execute(dataRecordingMessage);
+                        }
                     }
                 } else if (update.callbackQuery().data().equals("volunteer")) {
                     SendMessage messageVolunteer = new SendMessage(idChat2, EnumsInfo.VOLUNTEER.getText());
@@ -170,26 +171,27 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 } else if (call_data2.equals("sendContact")) {
                     SendMessage messageSendContact = new SendMessage(idChat3, EnumsInfo.SEND_CONTACT.getText());
                     telegramBot.execute(messageSendContact);
-                    String contactMessage = update.message().text();
-                    if (contactMessage.isEmpty()) {
-                        throw new RuntimeException();
-                    } else {
-                        addContactToUser(contactMessage, idChat3);
-                        SendMessage dataRecordingMessage = new SendMessage(idChat3, "Данные сохранены");
-                        telegramBot.execute(dataRecordingMessage);
+                    if (update.message() != null) {
+                        if (update.message().text().startsWith("/contact")) {
+                            String contactMessage = update.message().text();
+                            long idChat6 = update.message().chat().id();
+                            addContactToUser(contactMessage, idChat3);
+                            SendMessage dataRecordingMessage = new SendMessage(idChat6, "Данные сохранены");
+                            telegramBot.execute(dataRecordingMessage);
+                        }
                     }
                 } else if (update.callbackQuery().data().equals("volunteer")) {
                     SendMessage messageVolunteer = new SendMessage(idChat3, EnumsInfo.VOLUNTEER.getText());
                     telegramBot.execute(messageVolunteer);
                 }
             }
-
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
-    private void addContactToUser(String contactMessage, long idChat) {
+
+    private void addContactToUser(String contactMessage, long idChat5) {
         Contact contact = Parsers.parseContact(contactMessage);
-        var user = usersService.findByChatId(idChat);
+        var user = usersService.findByChatId(idChat5);
         user.setContact(contact);
         usersService.updateUser(user);
     }
