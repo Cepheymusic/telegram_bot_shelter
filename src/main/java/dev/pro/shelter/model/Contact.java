@@ -1,12 +1,17 @@
 package dev.pro.shelter.model;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.util.Objects;
 @Embeddable
 public class Contact {
+    @Column(name = "name")
     private String name;
+    @Column(name = "surname")
     private String surname;
+    @Column(name = "phone")
     private String phone;
+    @Column(name = "email")
     private String email;
 
     public Contact(String name, String surname, String phone, String email) {
@@ -15,6 +20,10 @@ public class Contact {
         this.phone = phone;
         this.email = email;
     }
+
+//    public Contact() {
+//
+//    }
 
 
     public String getName() {
@@ -52,13 +61,14 @@ public class Contact {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Contact contact)) return false;
-        return Objects.equals(getName(), contact.getName()) && Objects.equals(getSurname(), contact.getSurname()) && Objects.equals(getPhone(), contact.getPhone()) && Objects.equals(getEmail(), contact.getEmail());
+        if (o == null || getClass() != o.getClass()) return false;
+        Contact contact = (Contact) o;
+        return Objects.equals(name, contact.name) && Objects.equals(surname, contact.surname) && Objects.equals(phone, contact.phone) && Objects.equals(email, contact.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getSurname(), getPhone(), getEmail());
+        return Objects.hash(name, surname, phone, email);
     }
 
     @Override

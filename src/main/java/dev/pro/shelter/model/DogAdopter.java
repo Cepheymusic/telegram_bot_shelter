@@ -28,20 +28,21 @@ public class DogAdopter extends Users {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof DogAdopter that)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        return Objects.equals(getDogId(), that.getDogId()) && Objects.equals(address, that.address);
+        DogAdopter that = (DogAdopter) o;
+        return Objects.equals(dogId, that.dogId) && Objects.equals(address, that.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getDogId(), address);
+        return Objects.hash(super.hashCode(), dogId, address);
     }
 
     @Override
     public String toString() {
         return "DogAdopter{" +
-                "dog=" + dogId +
+                "dogId=" + dogId +
                 ", address='" + address + '\'' +
                 '}';
     }

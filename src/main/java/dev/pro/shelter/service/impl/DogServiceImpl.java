@@ -1,18 +1,18 @@
-package dev.pro.shelter.service;
+package dev.pro.shelter.service.impl;
 
 
 
-import dev.pro.shelter.Exception.CatNotFoundException;
 import dev.pro.shelter.Exception.DogNotFoundException;
-import dev.pro.shelter.model.Cat;
 import dev.pro.shelter.model.Dog;
 import dev.pro.shelter.repository.DogRepository;
+import dev.pro.shelter.service.DogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-
+@Service
 public class DogServiceImpl implements DogService {
     private final DogRepository dogRepository;
 
