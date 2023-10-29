@@ -33,4 +33,14 @@ public class UsersServiceImpl implements UsersService {
         logger.info("Returned from the Create method {}", newUser);
         return newUser;
     }
+
+    @Override
+    public Users findByChatId(Long chatId) {
+        return null;
+    }
+
+    @Override
+    public Users updateUser(Users user) {
+        return null;
+    }
 }
