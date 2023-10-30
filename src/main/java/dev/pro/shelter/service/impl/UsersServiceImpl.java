@@ -20,13 +20,13 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public boolean existsUserByChatId(Long chatId){
+    public boolean existsUserByChatId(Long chatId) {
         return repository.existsByChatId(chatId);
     }
 
     @Override
     public Users createUser(Long chatId) {
-        logger.info("The Create method was called with data {}", chatId);
+        logger.info("The Create method was called with chatId {}", chatId);
         Users createUsers = new Users();
         createUsers.setChatId(chatId);
         Users newUser = repository.save(createUsers);

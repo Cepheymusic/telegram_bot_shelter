@@ -1,57 +1,38 @@
 package dev.pro.shelter.model;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
-@Entity
-public class CatAdopter extends Users {
+
+//@Entity(name = "cat_adopter")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class CatAdopter extends PetAdopter{
     private Long catId;
-    private String address;
 
-
-    public CatAdopter(Integer id, long chatId, Contact contact, Long catId) {
-        super(id, chatId, contact);
-        this.catId = catId;
+    public CatAdopter(Long id, Long chatId, String name, String surname, String phone, String email, String address) {
+        super(id, chatId, name, surname, phone, email, address);
     }
 
     public CatAdopter() {
+        super();
     }
+
+//    @OneToMany(mappedBy = "cat_adopter")
+//    @JsonIgnore
+//    private List<Cat> cats;
+
+
+
 
     public Long getCatId() {
         return catId;
     }
 
-    public void setCat(Long catId) {
+    public void setCatId(Long catId) {
         this.catId = catId;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        CatAdopter that = (CatAdopter) o;
-        return Objects.equals(catId, that.catId) && Objects.equals(address, that.address);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), catId, address);
-    }
-
-    @Override
-    public String toString() {
-        return "CatAdopter{" +
-                "catId=" + catId +
-                ", address='" + address + '\'' +
-                '}';
-    }
 }

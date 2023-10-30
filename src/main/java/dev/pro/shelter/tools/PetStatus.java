@@ -1,5 +1,5 @@
 package dev.pro.shelter.tools;
 
-public enum InfoCat {
+public enum PetStatus {
 
 }

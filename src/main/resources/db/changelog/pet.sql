@@ -2,25 +2,21 @@
 
 -- changeset laserova:2
 create table cat(
-id serial primary key,
+id bigserial primary key,
 name varchar(15),
 photo bytea,
 age integer,
 breed varchar(20),
-healthRestrictions boolean,
-diet varchar,
-habits text,
-status integer
+health_restrictions boolean,
+status varchar(30)
 );
 
 create table dog(
-id serial primary key,
+id bigserial primary key,
 name varchar(15),
 photo bytea,
 age integer,
 breed varchar(20),
-healthRestrictions boolean,
-diet varchar,
-habits text,
-status integer
+health_restrictions boolean,
+status varchar(30)
 );

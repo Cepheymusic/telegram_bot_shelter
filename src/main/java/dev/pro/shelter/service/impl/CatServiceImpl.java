@@ -32,7 +32,7 @@ public class CatServiceImpl implements CatService {
     }
 
     @Override
-    public Cat readCat(Long id) {
+    public Cat readCat(long id) {
         logger.info("Вызван метод read с данными" + id);
         Optional<Cat> searchCat = catRepository.findById(id);
         if (searchCat.isEmpty()) {
@@ -44,9 +44,9 @@ public class CatServiceImpl implements CatService {
     }
 
     @Override
-    public Cat updateCat(Long id, Cat cat) {
-        logger.info("Вызван метод update с данными: {],{}" + id, cat);
-        if (catRepository.findById(id).isEmpty()) {
+    public Cat updateCat(Cat cat) {
+        logger.info("Вызван метод update с данными: " + cat);
+        if (catRepository.findById(cat.getId()).isEmpty()) {
             throw new CatNotFoundException("Котэ нет");
         }
         Cat updateCat = catRepository.save(cat);
@@ -55,13 +55,13 @@ public class CatServiceImpl implements CatService {
     }
 
     @Override
-    public Cat deleteCat(Long id) {
+    public Cat deleteCat(long id) {
         logger.info("Вызван метод delete с данными" + id);
         Optional<Cat> searchCat = catRepository.findById(id);
         if (searchCat.isEmpty()) {
             throw new CatNotFoundException("Котэ нет");
         }
-            catRepository.deleteById(id);
+        catRepository.deleteById(id);
         Cat deleteCat = searchCat.get();
         logger.info("Из метода delete вернули" + deleteCat);
         return deleteCat;
