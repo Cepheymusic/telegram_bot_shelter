@@ -2,7 +2,7 @@
 
 -- changeset laserova:2
 create table cat(
-id serial primary key,
+id bigserial primary key,
 name varchar(15),
 --photo bytea,
 age integer,
@@ -12,7 +12,7 @@ status varchar(30)
 );
 
 create table dog(
-id serial primary key,
+id bigserial primary key,
 name varchar(15),
 --photo bytea,
 age integer,
