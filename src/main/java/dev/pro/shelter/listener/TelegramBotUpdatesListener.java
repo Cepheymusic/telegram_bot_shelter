@@ -14,6 +14,7 @@ import dev.pro.shelter.model.EnumsInfo;
 import dev.pro.shelter.model.EnumsInfo2;
 import dev.pro.shelter.repository.UsersRepository;
 import dev.pro.shelter.service.ContactService;
+import dev.pro.shelter.service.TelegramBotService;
 import dev.pro.shelter.service.UsersService;
 import dev.pro.shelter.tools.Parsers;
 import org.slf4j.Logger;
@@ -31,16 +32,13 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
     private final TelegramBot telegramBot;
     private UsersService usersService;
-    private UsersRepository usersRepository;
+    private TelegramBotService botService;
 
 
-    public TelegramBotUpdatesListener(TelegramBot telegramBot,
-                                      UsersService usersService,
-                                      UsersRepository usersRepository) {
+    public TelegramBotUpdatesListener(TelegramBot telegramBot, UsersService usersService, TelegramBotService botService) {
         this.telegramBot = telegramBot;
         this.usersService = usersService;
-        this.usersRepository = usersRepository;
-
+        this.botService = botService;
     }
 
     @PostConstruct

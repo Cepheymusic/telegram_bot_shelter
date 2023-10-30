@@ -112,7 +112,6 @@ public abstract class Pet {
         return "Pet{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", photo=" + Arrays.toString(photo) +
                 ", age=" + age +
                 ", breed='" + breed + '\'' +
                 ", healthRestrictions=" + healthRestrictions +
