@@ -10,15 +10,17 @@
 
 create table users(
 id serial primary key,
-chatId bigint
+chat_id bigint
 );
 
 create table cat_adopter(
-catId int,
+id serial primary key,
+cat_id int,
 address varchar
 );
 
 create table dog_adopter(
-dogId int,
+id serial primary key,
+dog_id int,
 address varchar
 );
