@@ -4,19 +4,17 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Entity
+@MappedSuperclass
 public abstract class Pet {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Byte[] photo;
     private int age;
     private String breed;
     private boolean healthRestrictions;
-    private String diet; // выбор из списка параметров
-    private String habits; // свободное описание
     private String status; // выбор из списка параметров: in a shelter; probation; finally given to the owner
 
     public Pet(Long id, String name, Byte[] photo, int age, String breed, boolean healthRestrictions, String diet, String habits, String status) {
@@ -26,8 +24,6 @@ public abstract class Pet {
         this.age = age;
         this.breed = breed;
         this.healthRestrictions = healthRestrictions;
-        this.diet = diet;
-        this.habits = habits;
         this.status = status;
     }
 
@@ -82,22 +78,6 @@ public abstract class Pet {
         this.healthRestrictions = healthRestrictions;
     }
 
-    public String getDiet() {
-        return diet;
-    }
-
-    public void setDiet(String diet) {
-        this.diet = diet;
-    }
-
-    public String getHabits() {
-        return habits;
-    }
-
-    public void setHabits(String habits) {
-        this.habits = habits;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -111,7 +91,7 @@ public abstract class Pet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
-        return age == pet.age && healthRestrictions == pet.healthRestrictions && Objects.equals(name, pet.name) && Arrays.equals(photo, pet.photo) && Objects.equals(breed, pet.breed) && Objects.equals(diet, pet.diet) && Objects.equals(habits, pet.habits) && Objects.equals(status, pet.status);
+        return age == pet.age && healthRestrictions == pet.healthRestrictions && Objects.equals(name, pet.name) && Arrays.equals(photo, pet.photo) && Objects.equals(breed, pet.breed) && Objects.equals(status, pet.status);
     }
     //    @Override
 //    public boolean equals(Object o) {
@@ -122,7 +102,7 @@ public abstract class Pet {
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(getName(), getAge(), getBreed(), isHealthRestrictions(), getDiet(), getHabits(), getStatus());
+        int result = Objects.hash(getName(), getAge(), getBreed(), isHealthRestrictions(), getStatus());
         result = 31 * result + Arrays.hashCode(getPhoto());
         return result;
     }
@@ -136,8 +116,6 @@ public abstract class Pet {
                 ", age=" + age +
                 ", breed='" + breed + '\'' +
                 ", healthRestrictions=" + healthRestrictions +
-                ", diet='" + diet + '\'' +
-                ", habits='" + habits + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }

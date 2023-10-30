@@ -1,6 +1,10 @@
 package dev.pro.shelter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +17,10 @@ public class Users {
 
     @Embedded
     private Contact contact;
+
+//    @OneToMany(mappedBy = "report")
+//    @JsonIgnore
+//    private List<Report> reports;
 
     public Users(Integer id, Long chatId, Contact contact) {
         this.id = id;

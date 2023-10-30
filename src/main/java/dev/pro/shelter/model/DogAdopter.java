@@ -1,49 +1,32 @@
 package dev.pro.shelter.model;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
-@Entity
-public class DogAdopter extends Users {
-    private Long dogId;
-    private String address;
+@Entity(name = "dog_adopter")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class DogAdopter extends PetAdopter{
 
-    public DogAdopter(Integer id, long chatId, Contact contact, Long dogId, String address) {
-        super(id, chatId, contact);
-        this.dogId = dogId;
-        this.address = address;
+    private Integer dogId;
+
+
+    public DogAdopter(Integer id, Long chatId, String name, String surname, String phone, String email, String address) {
+        super(id, chatId, name, surname, phone, email, address);
     }
 
-    public DogAdopter() {
-    }
+//    @OneToMany(mappedBy = "dog_adopter")
+//    @JsonIgnore
+//    private List<Dog> dogs;
 
-    public Long getDogId() {
+
+    public Integer getDogId() {
         return dogId;
     }
 
-    public void setDog(Long dogId) {
+    public void setDogId(Integer dogId) {
         this.dogId = dogId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        DogAdopter that = (DogAdopter) o;
-        return Objects.equals(dogId, that.dogId) && Objects.equals(address, that.address);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), dogId, address);
-    }
-
-    @Override
-    public String toString() {
-        return "DogAdopter{" +
-                "dogId=" + dogId +
-                ", address='" + address + '\'' +
-                '}';
     }
 }

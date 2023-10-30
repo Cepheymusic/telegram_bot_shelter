@@ -7,10 +7,8 @@ name varchar(15),
 photo bytea,
 age integer,
 breed varchar(20),
-healthRestrictions boolean,
-diet varchar,
-habits text,
-status integer
+health_restrictions boolean,
+status varchar(30)
 );
 
 create table dog(
@@ -19,8 +17,6 @@ name varchar(15),
 photo bytea,
 age integer,
 breed varchar(20),
-healthRestrictions boolean,
-diet varchar,
-habits text,
-status integer
+health_restrictions boolean,
+status varchar(30)
 );
