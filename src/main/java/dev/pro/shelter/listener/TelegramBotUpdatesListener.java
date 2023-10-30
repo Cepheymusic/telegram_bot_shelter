@@ -14,6 +14,7 @@ import dev.pro.shelter.model.EnumsInfo;
 import dev.pro.shelter.model.EnumsInfo2;
 import dev.pro.shelter.repository.UsersRepository;
 import dev.pro.shelter.service.ContactService;
+import dev.pro.shelter.service.TelegramBotService;
 import dev.pro.shelter.service.UsersService;
 import dev.pro.shelter.tools.Parsers;
 import org.slf4j.Logger;
@@ -31,16 +32,13 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
     private final TelegramBot telegramBot;
     private UsersService usersService;
-    private UsersRepository usersRepository;
+    private TelegramBotService botService;
 
 
-    public TelegramBotUpdatesListener(TelegramBot telegramBot,
-                                      UsersService usersService,
-                                      UsersRepository usersRepository) {
+    public TelegramBotUpdatesListener(TelegramBot telegramBot, UsersService usersService, TelegramBotService botService) {
         this.telegramBot = telegramBot;
         this.usersService = usersService;
-        this.usersRepository = usersRepository;
-
+        this.botService = botService;
     }
 
     @PostConstruct
@@ -52,6 +50,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     public int process(List<Update> updates) {
         updates.forEach(update -> {
             logger.info("Processing update: {}", update);
+
             if (update.message() != null) {
                 if (update.message().text().equals("/start")) {
                     long idChat = update.message().chat().id();
@@ -124,14 +123,22 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 } else if (call_data2.equals("sendContact")) {
                     SendMessage messageSendContact = new SendMessage(idChat2, EnumsInfo.SEND_CONTACT.getText());
                     telegramBot.execute(messageSendContact);
-                    String contactMessage = update.message().text();
-                    if (contactMessage.isEmpty()) {
-                        throw new RuntimeException();
-                    } else {
-                        addContactToUser(contactMessage, idChat2);
-                        SendMessage dataRecordingMessage = new SendMessage(idChat2, "Данные сохранены");
-                        telegramBot.execute(dataRecordingMessage);
+                    logger.info("send contact-pattern1");
+                    if (update.message() != null) {
+                        logger.info("test contact-start");
+                        if (update.message().text().startsWith("/contact")) {
+                            logger.info("Get contact message from dog-user");
+                            String contactMessage = update.message().text();
+                            logger.info("Get variable ContactMessage: {}", contactMessage);
+                            long idChat5 = update.message().chat().id();
+                            logger.info("Get variable IdChat5: {}", idChat5);
+                            botService.addContactToUser(contactMessage, idChat5);
+                            logger.info("Was called method AddContactToUser with data: {}  ;;;  {} ", contactMessage, idChat5);
+//                            SendMessage dataRecordingMessage = new SendMessage(idChat5, "Данные сохранены");
+//                            telegramBot.execute(dataRecordingMessage);
+                        }
                     }
+                    logger.info("exit contact-1");
                 } else if (update.callbackQuery().data().equals("volunteer")) {
                     SendMessage messageVolunteer = new SendMessage(idChat2, EnumsInfo.VOLUNTEER.getText());
                     telegramBot.execute(messageVolunteer);
@@ -170,14 +177,22 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 } else if (call_data2.equals("sendContact")) {
                     SendMessage messageSendContact = new SendMessage(idChat3, EnumsInfo.SEND_CONTACT.getText());
                     telegramBot.execute(messageSendContact);
-                    String contactMessage = update.message().text();
-                    if (contactMessage.isEmpty()) {
-                        throw new RuntimeException();
-                    } else {
-                        addContactToUser(contactMessage, idChat3);
-                        SendMessage dataRecordingMessage = new SendMessage(idChat3, "Данные сохранены");
-                        telegramBot.execute(dataRecordingMessage);
+                    logger.info("send contact-pattern2");
+                    if (update.message() != null) {
+                        logger.info("test contact-start-2");
+                        if (update.message().text().startsWith("/contact")) {
+                            logger.info("Get contact message-2");
+                            String contactMessage = update.message().text();
+                            logger.info("Get variable ContactMessage-2: {}", contactMessage);
+                            long idChat6 = update.message().chat().id();
+                            logger.info("Get variable IdChat6(2): {}", idChat6);
+                            botService.addContactToUser(contactMessage, idChat3);
+                            logger.info("Was called method AddContactToUser(2) with data: {}  ;;;  {} ", contactMessage, idChat6);
+//                            SendMessage dataRecordingMessage = new SendMessage(idChat6, "Данные сохранены");
+//                            telegramBot.execute(dataRecordingMessage);
+                        }
                     }
+                    logger.info("exit contact-2");
                 } else if (update.callbackQuery().data().equals("volunteer")) {
                     SendMessage messageVolunteer = new SendMessage(idChat3, EnumsInfo.VOLUNTEER.getText());
                     telegramBot.execute(messageVolunteer);
@@ -187,10 +202,11 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
-    private void addContactToUser(String contactMessage, long idChat) {
-        Contact contact = Parsers.parseContact(contactMessage);
-        var user = usersService.findByChatId(idChat);
-        user.setContact(contact);
-        usersService.updateUser(user);
-    }
+
+//    private void addContactToUser(String contactMessage, long idChat5) {
+//        Contact contact = Parsers.parseContact(contactMessage);
+//        var user = usersService.findByChatId(idChat5);
+//        user.setContact(contact);
+//        usersService.updateUser(user);
+//    }
 }
