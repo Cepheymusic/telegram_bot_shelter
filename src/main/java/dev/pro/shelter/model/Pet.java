@@ -17,7 +17,7 @@ public abstract class Pet {
     private boolean healthRestrictions;
     private String status; // выбор из списка параметров: in a shelter; probation; finally given to the owner
 
-    public Pet(Long id, String name, Byte[] photo, int age, String breed, boolean healthRestrictions, String diet, String habits, String status) {
+    public Pet(Long id, String name, Byte[] photo, int age, String breed, boolean healthRestrictions, String status) {
         this.id = id;
         this.name = name;
         this.photo = photo;

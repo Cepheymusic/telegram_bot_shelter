@@ -8,7 +8,7 @@ import java.util.List;
 public class Report {
     @Id
     @GeneratedValue
-    private long reportId;
+    private long Id;
     private long userId;
     private long petId;
     private Byte[] photoPet;

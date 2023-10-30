@@ -5,8 +5,8 @@ import javax.persistence.*;
 @MappedSuperclass
 public abstract class PetAdopter {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Long chatId;
     private String name;
     private String surname;
@@ -14,7 +14,7 @@ public abstract class PetAdopter {
     private String email;
     private String address;
 
-    public PetAdopter(Integer id, Long chatId, String name, String surname, String phone, String email, String address) {
+    public PetAdopter(Long id, Long chatId, String name, String surname, String phone, String email, String address) {
         this.id = id;
         this.chatId = chatId;
         this.name = name;
@@ -22,5 +22,9 @@ public abstract class PetAdopter {
         this.phone = phone;
         this.email = email;
         this.address = address;
+    }
+
+    public PetAdopter() {
+
     }
 }

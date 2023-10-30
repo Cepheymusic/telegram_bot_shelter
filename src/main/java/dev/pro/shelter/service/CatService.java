@@ -5,7 +5,7 @@ import dev.pro.shelter.model.Cat;
 
 public interface CatService extends PetService{
     Cat createCat(Cat cat);
-    Cat readCat(int id);
+    Cat readCat(long id);
     Cat updateCat(Cat cat);
-    Cat deleteCat(int id);
+    Cat deleteCat(long id);
 }

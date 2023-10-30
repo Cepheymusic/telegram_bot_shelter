@@ -8,4 +8,6 @@ databaseChangeLog:
   - include:
       relativeToChangelogFile: true
       file: users.sql
-
+  - include:
+      relativeToChangelogFile: true
+      file: report.sql

@@ -32,7 +32,7 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
-    public Dog readDog(int id) {
+    public Dog readDog(long id) {
         logger.info("Вызван метод read с данными" + id);
         Optional<Dog> searchDog = dogRepository.findById(id);
         if (searchDog.isEmpty()) {
@@ -55,7 +55,7 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
-    public Dog deleteDog(int id) {
+    public Dog deleteDog(long id) {
         logger.info("Вызван метод delete с данными" + id);
         Optional<Dog> searchCat = dogRepository.findById(id);
         if (searchCat.isEmpty()) {

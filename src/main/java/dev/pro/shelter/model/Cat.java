@@ -8,7 +8,7 @@ public class Cat extends Pet {
 //    @ManyToOne
 //    @JoinColumn(name = "cat_adopter_id")
 //    private CatAdopter adopter;
-    public Cat(Integer id, String name, Byte[] photo, int age, String breed, boolean healthRestrictions, String status) {
+    public Cat(Long id, String name, Byte[] photo, int age, String breed, boolean healthRestrictions, String status) {
         super(id, name, photo, age, breed, healthRestrictions, status);
     }
 
