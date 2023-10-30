@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "reports")
 public class Report {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     private long userId;
     private long petId;
