@@ -20,13 +20,13 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public boolean existsUserByChatId(Long chatId){
+    public boolean existsUserByChatId(Long chatId) {
         return repository.existsByChatId(chatId);
     }
 
     @Override
     public Users createUser(Long chatId) {
-        logger.info("The Create method was called with data {}", chatId);
+        logger.info("The Create method was called with chatId {}", chatId);
         Users createUsers = new Users();
         createUsers.setChatId(chatId);
         Users newUser = repository.save(createUsers);
@@ -36,11 +36,24 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users findByChatId(Long chatId) {
-        return null;
+        logger.info("The FindByChatId method was called with chatId {}", chatId);
+        Optional<Users> user = repository.findByChatId(chatId);
+        if (user.isEmpty()) {
+            throw new UsersException("failure identification");
+        }
+        Users findUser = user.get();
+        logger.info("Returned from the FindByChatId method {}", findUser);
+        return findUser;
     }
 
     @Override
-    public Users updateUser(Users user) {
-        return null;
+    public Users updateUser(Users user){
+        logger.info("The Update method was called with data {}", user);
+        if (repository.findById(user.getId()).isEmpty()) {
+            throw new UsersException("failure identification");
+        }
+        Users updatedUser = repository.save(user);
+        logger.info("Returned from the Update method {}", updatedUser);
+        return updatedUser;
     }
 }

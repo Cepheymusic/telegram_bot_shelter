@@ -1,24 +1,24 @@
 -- liquibase formatted sql
 
 -- changeset laserova:3
---create table contact(
---name varchar(30),
---surname varchar(30),
---phone varchar(10),
---email varchar
---);
 
 create table users(
-id serial primary key,
-chatId bigint
+id BIGSERIAL primary key,
+chat_id bigint,
+name varchar,
+surname varchar,
+phone varchar(15),
+email varchar
 );
 
 create table cat_adopter(
-catId int,
+id bigserial primary key,
+cat_id BIGINT,
 address varchar
 );
 
 create table dog_adopter(
-dogId int,
+id bigserial primary key,
+dog_id BIGINT,
 address varchar
 );

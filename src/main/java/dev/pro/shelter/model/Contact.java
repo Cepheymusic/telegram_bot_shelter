@@ -14,6 +14,8 @@ public class Contact {
     @Column(name = "email")
     private String email;
 
+
+
     public Contact(String name, String surname, String phone, String email) {
         this.name = name;
         this.surname = surname;
@@ -21,9 +23,9 @@ public class Contact {
         this.email = email;
     }
 
-//    public Contact() {
-//
-//    }
+    public Contact() {
+
+    }
 
 
     public String getName() {

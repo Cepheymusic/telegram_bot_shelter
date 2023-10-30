@@ -52,6 +52,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     public int process(List<Update> updates) {
         updates.forEach(update -> {
             logger.info("Processing update: {}", update);
+
             if (update.message() != null) {
                 if (update.message().text().equals("/start")) {
                     long idChat = update.message().chat().id();
@@ -70,19 +71,52 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     }
                 }
             }
-            InlineKeyboardMarkup markupInline2 = new InlineKeyboardMarkup();
-            markupInline2.addRow(new InlineKeyboardButton("Рассказать о приюте").callbackData("infoShelter"),
+
+            InlineKeyboardMarkup markupInlineDog = new InlineKeyboardMarkup();
+            markupInlineDog.addRow(new InlineKeyboardButton("Рассказать о приюте").callbackData("infoDogShelter"),
                     new InlineKeyboardButton("Расписание работы, адрес").callbackData("searchDogShelter"));
-            markupInline2.addRow(new InlineKeyboardButton("Контактные данные охраны для оформления пропуска на машину").callbackData("securityData"));
-            markupInline2.addRow(new InlineKeyboardButton("Рекомендации о технике безопасности на территории приюта").callbackData("safetyPrecautions"));
-            markupInline2.addRow(new InlineKeyboardButton("Позвать волонтёра").callbackData("volunteer"),
+            markupInlineDog.addRow(new InlineKeyboardButton("Контактные данные охраны для оформления пропуска на машину").callbackData("securityData"));
+            markupInlineDog.addRow(new InlineKeyboardButton("Рекомендации о технике безопасности на территории приюта").callbackData("safetyPrecautions"));
+            markupInlineDog.addRow(new InlineKeyboardButton("Позвать волонтёра").callbackData("volunteer"),
                     new InlineKeyboardButton("Отправить контактные данные").callbackData("sendContact"));
+
+            InlineKeyboardMarkup markupInlineCat = new InlineKeyboardMarkup();
+            markupInlineCat.addRow(new InlineKeyboardButton("Рассказать о приюте").callbackData("infoCatShelter"),
+                    new InlineKeyboardButton("Расписание работы, адрес").callbackData("searchDogShelter"));
+            markupInlineCat.addRow(new InlineKeyboardButton("Контактные данные охраны для оформления пропуска на машину").callbackData("securityData"));
+            markupInlineCat.addRow(new InlineKeyboardButton("Рекомендации о технике безопасности на территории приюта").callbackData("safetyPrecautions"));
+            markupInlineCat.addRow(new InlineKeyboardButton("Позвать волонтёра").callbackData("volunteer"),
+                    new InlineKeyboardButton("Отправить контактные данные").callbackData("sendContact"));
+
+            InlineKeyboardMarkup markupInlineDogInfo = new InlineKeyboardMarkup(
+                    new InlineKeyboardButton("Правила знакомства с животным").callbackData("datingRules"));
+            markupInlineDogInfo.addRow(new InlineKeyboardButton("Список документов, необходимых для того, чтобы взять животное из приюта").callbackData("listOfDocuments"));
+            markupInlineDogInfo.addRow(new InlineKeyboardButton("Список рекомендаций по транспортировке животного").callbackData("transportation"));
+            markupInlineDogInfo.addRow(new InlineKeyboardButton("Список рекомендаций по обустройству дома для маленького животного").callbackData("arrangingAPuppy"));
+            markupInlineDogInfo.addRow(new InlineKeyboardButton("Список рекомендаций по обустройству дома для взрослого животного").callbackData("arrangementOfAnAdultAnimal"));
+            markupInlineDogInfo.addRow(new InlineKeyboardButton("Список рекомендаций по обустройству дома для животного с ограниченными возможностями").callbackData("limitedFeatures"));
+            markupInlineDogInfo.addRow(new InlineKeyboardButton("Причины, по которым могут отказать и не дать забрать животное из приюта.").callbackData("reasonsForRefusal"));
+            markupInlineDogInfo.addRow(new InlineKeyboardButton("Принять и записать контактные данные для связи").callbackData("sendContact"));
+            markupInlineDogInfo.addRow(new InlineKeyboardButton("Позвать волонтёра").callbackData("volunteer"));
+            markupInlineDogInfo.addRow(new InlineKeyboardButton("Советы кинолога по первичному общению с собакой").callbackData("dogHandler"));
+            markupInlineDogInfo.addRow(new InlineKeyboardButton("Рекомендации по проверенным кинологам для дальнейшего обращения к ним").callbackData("provenDogHandlers"));
+
+            InlineKeyboardMarkup markupInlineCatInfo = new InlineKeyboardMarkup(
+                    new InlineKeyboardButton("Правила знакомства с животным").callbackData("datingRules"));
+            markupInlineCatInfo.addRow(new InlineKeyboardButton("Список документов, необходимых для того, чтобы взять животное из приюта").callbackData("listOfDocuments"));
+            markupInlineCatInfo.addRow(new InlineKeyboardButton("Список рекомендаций по транспортировке животного").callbackData("transportation"));
+            markupInlineCatInfo.addRow(new InlineKeyboardButton("Список рекомендаций по обустройству дома для маленького животного").callbackData("arrangingAPuppy"));
+            markupInlineCatInfo.addRow(new InlineKeyboardButton("Список рекомендаций по обустройству дома для взрослого животного").callbackData("arrangementOfAnAdultAnimal"));
+            markupInlineCatInfo.addRow(new InlineKeyboardButton("Список рекомендаций по обустройству дома для животного с ограниченными возможностями").callbackData("limitedFeatures"));
+            markupInlineCatInfo.addRow(new InlineKeyboardButton("Причины, по которым могут отказать и не дать забрать животное из приюта.").callbackData("reasonsForRefusal"));
+            markupInlineCatInfo.addRow(new InlineKeyboardButton("Принять и записать контактные данные для связи").callbackData("sendContact"));
+            markupInlineCatInfo.addRow(new InlineKeyboardButton("Позвать волонтёра").callbackData("volunteer"));
 
             if (update.callbackQuery() != null) {
                 String call_data = update.callbackQuery().data();
                 var idChat = update.callbackQuery().message().chat().id();
                 if (call_data.equals("dogShelter")) {
-                    SendMessage messageForUser3 = new SendMessage(idChat, "Вы в меню приюта для собак").replyMarkup(markupInline2);
+                    SendMessage messageForUser3 = new SendMessage(idChat, "Вы в меню приюта для собак").replyMarkup(markupInlineDogInfo);
                     telegramBot.execute(messageForUser3);
                 }
             }
@@ -90,27 +124,18 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 String call_data = update.callbackQuery().data();
                 var idChat = update.callbackQuery().message().chat().id();
                 if (call_data.equals("catShelter")) {
-                    SendMessage messageForUser3 = new SendMessage(idChat, "Вы в меню приюта для кошек").replyMarkup(markupInline2);
+                    SendMessage messageForUser3 = new SendMessage(idChat, "Вы в меню приюта для кошек").replyMarkup(markupInlineCatInfo);
                     telegramBot.execute(messageForUser3);
                 }
             }
             if (update.callbackQuery() != null) {
                 String call_data2 = update.callbackQuery().data();
                 var idChat2 = update.callbackQuery().message().chat().id();
-                if (call_data2.equals("infoShelter")) {
-                    InlineKeyboardMarkup markupInline3 = new InlineKeyboardMarkup(
-                            new InlineKeyboardButton("Правила знакомства с животным").callbackData("datingRules"));
-                    markupInline3.addRow(new InlineKeyboardButton("Список документов, необходимых для того, чтобы взять животное из приюта").callbackData("listOfDocuments"));
-                    markupInline3.addRow(new InlineKeyboardButton("Список рекомендаций по транспортировке животного").callbackData("transportation"));
-                    markupInline3.addRow(new InlineKeyboardButton("Список рекомендаций по обустройству дома для маленького животного").callbackData("arrangingAPuppy"));
-                    markupInline3.addRow(new InlineKeyboardButton("Список рекомендаций по обустройству дома для взрослого животного").callbackData("arrangementOfAnAdultAnimal"));
-                    markupInline3.addRow(new InlineKeyboardButton("Список рекомендаций по обустройству дома для животного с ограниченными возможностями").callbackData("limitedFeatures"));
-                    markupInline3.addRow(new InlineKeyboardButton("Советы кинолога по первичному общению с собакой").callbackData("dogHandler"));
-                    markupInline3.addRow(new InlineKeyboardButton("Рекомендации по проверенным кинологам для дальнейшего обращения к ним").callbackData("provenDogHandlers"));
-                    markupInline3.addRow(new InlineKeyboardButton("Причины, по которым могут отказать и не дать забрать животное из приюта.").callbackData("reasonsForRefusal"));
-                    markupInline3.addRow(new InlineKeyboardButton("Принять и записать контактные данные для связи").callbackData("sendContact"));
-                    markupInline3.addRow(new InlineKeyboardButton("Позвать волонтёра").callbackData("volunteer"));
-                    SendMessage messageShelterInfo = new SendMessage(idChat2, EnumsInfo.INFO_DOG_SHELTER.getText()).replyMarkup(markupInline3);
+                if (call_data2.equals("infoDogShelter")) {
+                    SendMessage messageShelterInfo = new SendMessage(idChat2, EnumsInfo.INFO_SHELTER.getText()).replyMarkup(markupInlineCatInfo);
+                    telegramBot.execute(messageShelterInfo);
+                } else if (call_data2.equals("infoCatShelter")) {
+                    SendMessage messageShelterInfo = new SendMessage(idChat2, EnumsInfo.INFO_SHELTER.getText()).replyMarkup(markupInlineCatInfo);
                     telegramBot.execute(messageShelterInfo);
                 } else if (call_data2.equals("searchDogShelter")) {
                     SendMessage messageSearchDogShelter = new SendMessage(idChat2, EnumsInfo.SEARCH_DOG_SHELTER.getText());
@@ -124,17 +149,18 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 } else if (call_data2.equals("sendContact")) {
                     SendMessage messageSendContact = new SendMessage(idChat2, EnumsInfo.SEND_CONTACT.getText());
                     telegramBot.execute(messageSendContact);
-                    String contactMessage = update.message().text();
-                    if (contactMessage.isEmpty()) {
-                        throw new RuntimeException();
-                    } else {
-                        addContactToUser(contactMessage, idChat2);
-                        SendMessage dataRecordingMessage = new SendMessage(idChat2, "Данные сохранены");
-                        telegramBot.execute(dataRecordingMessage);
-                    }
                 } else if (update.callbackQuery().data().equals("volunteer")) {
                     SendMessage messageVolunteer = new SendMessage(idChat2, EnumsInfo.VOLUNTEER.getText());
                     telegramBot.execute(messageVolunteer);
+                }
+            }
+            if (update.message() != null) {
+                if (update.message().text().startsWith("/contact")) {
+                    String contactMessage = update.message().text();
+                    long idChat5 = update.message().chat().id();
+                    addContactToUser(contactMessage, idChat5);
+                    SendMessage dataRecordingMessage = new SendMessage(idChat5, "Данные сохранены");
+                    telegramBot.execute(dataRecordingMessage);
                 }
             }
             if (update.callbackQuery() != null) {
@@ -167,29 +193,32 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 } else if (call_data2.equals("reasonsForRefusal")) {
                     SendMessage messageReasonsForRefusal = new SendMessage(idChat3, EnumsInfo2.REASONS_FOR_REFUSAL.getText());
                     telegramBot.execute(messageReasonsForRefusal);
-                } else if (call_data2.equals("sendContact")) {
+                } /*else if (call_data2.equals("sendContact")) {
                     SendMessage messageSendContact = new SendMessage(idChat3, EnumsInfo.SEND_CONTACT.getText());
                     telegramBot.execute(messageSendContact);
-                    String contactMessage = update.message().text();
-                    if (contactMessage.isEmpty()) {
-                        throw new RuntimeException();
-                    } else {
-                        addContactToUser(contactMessage, idChat3);
-                        SendMessage dataRecordingMessage = new SendMessage(idChat3, "Данные сохранены");
-                        telegramBot.execute(dataRecordingMessage);
+                    if (update.message() != null) {
+                        if (update.message().text().startsWith("/contact")) {
+                            String contactMessage = update.message().text();
+                            long idChat6 = update.message().chat().id();
+                            addContactToUser(contactMessage, idChat3);
+                            SendMessage dataRecordingMessage = new SendMessage(idChat6, "Данные сохранены");
+                            telegramBot.execute(dataRecordingMessage);
+                        }
                     }
-                } else if (update.callbackQuery().data().equals("volunteer")) {
+                }*/ else if (update.callbackQuery().data().equals("volunteer")) {
                     SendMessage messageVolunteer = new SendMessage(idChat3, EnumsInfo.VOLUNTEER.getText());
                     telegramBot.execute(messageVolunteer);
                 }
-            }
 
+
+            }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
-    private void addContactToUser(String contactMessage, long idChat) {
+
+    private void addContactToUser(String contactMessage, long idChat5) {
         Contact contact = Parsers.parseContact(contactMessage);
-        var user = usersService.findByChatId(idChat);
+        var user = usersService.findByChatId(idChat5);
         user.setContact(contact);
         usersService.updateUser(user);
     }

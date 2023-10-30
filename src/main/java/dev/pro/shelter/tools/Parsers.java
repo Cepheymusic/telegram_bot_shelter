@@ -1,11 +1,12 @@
 package dev.pro.shelter.tools;
 
 import dev.pro.shelter.model.Contact;
-import dev.pro.shelter.model.Report;
+//import dev.pro.shelter.model.Report;
 
 public class Parsers {
     public static Contact parseContact(String text) {
-        String[] ss = text.split(",");
+        String[] contInfo = text.split(" ", 2);
+        String[] ss = contInfo[1].split(",");
 
         String name = ss[0];
         String surname = ss[1];
@@ -16,5 +17,5 @@ public class Parsers {
         return contact;
     }
 
-    public static Report parseReport(){return null;}
+//    public static Report parseReport(){return null;}
 }
