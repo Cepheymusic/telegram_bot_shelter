@@ -1,6 +1,6 @@
 package dev.pro.shelter.service.impl;
 
-import dev.pro.shelter.Exception.CatNotFoundException;
+import dev.pro.shelter.exception.CatNotFoundException;
 import dev.pro.shelter.model.Cat;
 
 import dev.pro.shelter.repository.CatRepository;

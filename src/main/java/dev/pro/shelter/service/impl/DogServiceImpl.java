@@ -2,7 +2,7 @@ package dev.pro.shelter.service.impl;
 
 
 
-import dev.pro.shelter.Exception.DogNotFoundException;
+import dev.pro.shelter.exception.DogNotFoundException;
 import dev.pro.shelter.model.Dog;
 import dev.pro.shelter.repository.DogRepository;
 import dev.pro.shelter.service.DogService;
