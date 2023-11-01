@@ -1,9 +1,11 @@
 package dev.pro.shelter.service.impl;
 
 import dev.pro.shelter.exception.UsersException;
+import dev.pro.shelter.model.Contact;
 import dev.pro.shelter.model.Users;
 import dev.pro.shelter.repository.UsersRepository;
 import dev.pro.shelter.service.UsersService;
+import dev.pro.shelter.tools.Parsers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

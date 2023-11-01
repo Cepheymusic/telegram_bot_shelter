@@ -1,15 +1,17 @@
 package dev.pro.shelter.controller;
 
+import dev.pro.shelter.exception.CatNotFoundException;
+import dev.pro.shelter.exception.DogNotFoundException;
+import dev.pro.shelter.exception.MessageNotFoundException;
+import dev.pro.shelter.exception.UsersException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import dev.pro.shelter.exception.CatNotFoundException;
-import dev.pro.shelter.exception.DogNotFoundException;
-import dev.pro.shelter.exception.MessageNotFoundException;
-import dev.pro.shelter.exception.UsersException;
+
+
 
 
 @ControllerAdvice

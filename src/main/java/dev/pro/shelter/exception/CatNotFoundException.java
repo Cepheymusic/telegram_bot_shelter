@@ -1,4 +1,4 @@
-package dev.pro.shelter.Exception;
+package dev.pro.shelter.exception;
 
 public class CatNotFoundException extends RuntimeException{
     public CatNotFoundException(String massage) {
