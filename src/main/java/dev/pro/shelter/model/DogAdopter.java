@@ -25,7 +25,6 @@ public class DogAdopter extends Users{
 
     public DogAdopter() {
     }
-
     //    @OneToMany(mappedBy = "dog_adopter")
 //    @JsonIgnore
 //    private List<Dog> dogs;

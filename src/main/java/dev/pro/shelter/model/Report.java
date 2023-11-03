@@ -11,9 +11,10 @@ public class Report {
     private long Id;
     private long userId;
     private long petId;
-    private Byte[] photoPet;
-    private String diet; // выбор из списка параметров
-    private String habits; // свободное описание
+    @Embedded
+    private PhotoPet photo;
+    private String diet;
+    private String habits;
     private byte probationDays;
     private LocalDateTime lastReportDate;
 
@@ -37,17 +38,6 @@ public class Report {
 //    @JoinColumn(referencedColumnName = "dog_adopter_id")
 //    private DogAdopter dogAdopters;
 //
-////    private String filePath;
-////    /**
-////     * Size of sent file
-////     * @param fileSize
-////     */
-////    private Long fileSize;
-////    /**
-////     * Byte array for file transfer
-////     * @param data
-////     */
-////    @Lob
-////    private byte[] data;
+////
 //
 }

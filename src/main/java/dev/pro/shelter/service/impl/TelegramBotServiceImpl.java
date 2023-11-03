@@ -46,4 +46,9 @@ public class TelegramBotServiceImpl implements TelegramBotService {
         telegramBot.execute(result);
         logger.info("for chat with id {} was created notification {}", idChat, contactMessage);
     }
+
+    @Override
+    public void addReportToDB(long idChat, String textMsg) {
+
+    }
 }

@@ -11,13 +11,14 @@ public abstract class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Byte[] photo;
+    @Embedded
+    private PhotoPet photo;
     private int age;
     private String breed;
     private boolean healthRestrictions;
     private String status; // выбор из списка параметров: in a shelter; probation; finally given to the owner
 
-    public Pet(Long id, String name, Byte[] photo, int age, String breed, boolean healthRestrictions, String status) {
+    public Pet(Long id, String name, PhotoPet photo, int age, String breed, boolean healthRestrictions, String status) {
         this.id = id;
         this.name = name;
         this.photo = photo;
@@ -46,11 +47,11 @@ public abstract class Pet {
         this.name = name;
     }
 
-    public Byte[] getPhoto() {
+    public PhotoPet getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Byte[] photo) {
+    public void setPhoto(PhotoPet photo) {
         this.photo = photo;
     }
 
@@ -91,7 +92,8 @@ public abstract class Pet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
-        return age == pet.age && healthRestrictions == pet.healthRestrictions && Objects.equals(name, pet.name) && Arrays.equals(photo, pet.photo) && Objects.equals(breed, pet.breed) && Objects.equals(status, pet.status);
+        return age == pet.age && healthRestrictions == pet.healthRestrictions && Objects.equals(name, pet.name) &&
+                Objects.equals(breed, pet.breed) && Objects.equals(status, pet.status);
     }
     //    @Override
 //    public boolean equals(Object o) {
@@ -100,11 +102,10 @@ public abstract class Pet {
 //        return getAge() == pet.getAge() && isHealthRestrictions() == pet.isHealthRestrictions() && Objects.equals(getName(), pet.getName()) && Arrays.equals(getPhoto(), pet.getPhoto()) && Objects.equals(getBreed(), pet.getBreed()) && Objects.equals(getDiet(), pet.getDiet()) && Objects.equals(getHabits(), pet.getHabits()) && Objects.equals(getStatus(), pet.getStatus());
 //    }
 
+
     @Override
     public int hashCode() {
-        int result = Objects.hash(getName(), getAge(), getBreed(), isHealthRestrictions(), getStatus());
-        result = 31 * result + Arrays.hashCode(getPhoto());
-        return result;
+        return Objects.hash(getName(), getAge(), getBreed(), isHealthRestrictions(), getStatus());
     }
 
     @Override
