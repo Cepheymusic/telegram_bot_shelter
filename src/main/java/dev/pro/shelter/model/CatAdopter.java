@@ -8,32 +8,28 @@ import java.util.Objects;
 
 
 @Entity(name = "cat_adopter")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class CatAdopter extends PetAdopter{
+//@Inheritance(strategy = InheritanceType.JOINED)
+public class CatAdopter extends Users{
 
-    private Long catId;
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.TABLE)
+    //private Long id_adopter;
+    private String address;
+    private Long dogId;
 
-    public CatAdopter(Long id, Long chatId, Contact contact, String address) {
-        super(id, chatId, contact, address);
+    public CatAdopter(Long id, Long chatId, Contact contact, //Long id_adopter,
+                      Users users, String address, Long dogId) {
+        super(id, chatId, contact);
+        //this.id_adopter = id_adopter;
+        this.address = address;
+        this.dogId = dogId;
     }
 
     public CatAdopter() {
-        super();
     }
 
-//    @OneToMany(mappedBy = "cat_adopter")
+    //    @OneToMany(mappedBy = "cat_adopter")
 //    @JsonIgnore
 //    private List<Cat> cats;
-
-
-
-
-    public Long getCatId() {
-        return catId;
-    }
-
-    public void setCatId(Long catId) {
-        this.catId = catId;
-    }
 
 }

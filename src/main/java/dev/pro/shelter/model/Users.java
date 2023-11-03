@@ -9,9 +9,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)//test
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)//test
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long chatId;
 

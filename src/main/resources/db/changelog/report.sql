@@ -9,7 +9,5 @@ photo_pet bytea,
 diet varchar,
 habits varchar,
 probation_days smallint,
-last_report_date timestamp without time zone,
-missed_one_day boolean default false,
-missed_two_day boolean default false
+last_report_date timestamp without time zone
 );

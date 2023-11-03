@@ -12,25 +12,27 @@ email varchar
 );
 
 create table cat_adopter(
-id bigserial primary key,
-users_id bigint,
+--id_adopter bigserial primary key,
+id bigint,
 chat_id bigint,
 name varchar(30),
 surname varchar(30),
 phone varchar(15),
 email varchar,
-cat_id BIGINT,
+cat_id bigint,
+dog_id bigint,
 address varchar
 );
 
 create table dog_adopter(
-id bigserial primary key,
-users_id bigint,
+--id_adopter bigserial primary key,
+id bigint,
 chat_id bigint,
 name varchar(30),
 surname varchar(30),
 phone varchar(15),
 email varchar,
-dog_id BIGINT,
+dog_id bigint,
+cat_id bigint,
 address varchar
 );

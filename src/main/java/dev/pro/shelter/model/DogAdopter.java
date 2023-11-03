@@ -7,26 +7,27 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "dog_adopter")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class DogAdopter extends PetAdopter{
-
+//@Inheritance(strategy = InheritanceType.JOINED)
+public class DogAdopter extends Users{
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.TABLE)
+    //private Long id_adopter;
+    private String address;
     private Long dogId;
 
-
-    public DogAdopter(Long id, Long chatId, Contact contact, String address) {
-        super(id, chatId, contact, address);
+    public DogAdopter(Long id, Long chatId, Contact contact, //Long id_adopter,
+                      String address, Long dogId) {
+        super(id, chatId, contact);
+        //this.id_adopter = id_adopter;
+        this.address = address;
+        this.dogId = dogId;
     }
 
-//    @OneToMany(mappedBy = "dog_adopter")
+    public DogAdopter() {
+    }
+
+    //    @OneToMany(mappedBy = "dog_adopter")
 //    @JsonIgnore
 //    private List<Dog> dogs;
 
-
-    public Long getDogId() {
-        return dogId;
-    }
-
-    public void setDogId(Long dogId) {
-        this.dogId = dogId;
-    }
 }

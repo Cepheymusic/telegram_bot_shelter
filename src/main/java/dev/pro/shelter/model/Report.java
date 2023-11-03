@@ -16,8 +16,7 @@ public class Report {
     private String habits; // свободное описание
     private byte probationDays;
     private LocalDateTime lastReportDate;
-    private boolean missedOneDay;
-    private boolean missedTwoDay;
+
 //
 //
 ////    @ManyToMany
