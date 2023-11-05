@@ -10,7 +10,7 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName="users_id")
+    @JoinColumn(referencedColumnName = "id_users")
     private Users users;
     private Long idUsers;
     private Byte[] photo;
@@ -19,14 +19,17 @@ public class Report {
     private String habits;
     private LocalDate reportDate; //формат даты формат даты YYYY-MM-DD
     private LocalDate lastReportDate; //формат даты формат даты YYYY-MM-DD
-    private String resolution; //по умолчанию - на испытательный срок ENUM: PROBATION, TRANSFER TO ADOPTER, RETURN IN SHELTER, PROBATION +15DAY, PROBATION +30DAY
+    @Column(name = "resolution")
+    @Enumerated(EnumType.STRING)
+    private EnumResolution resolution; //по умолчанию - на испытательный срок PROBATION;
     private boolean sentMessage; //по умолчанию - ложно
 
 
-
-    public Report(Long id, Long idUsers, Byte[] photo, String diet, String health, String habits,
-                  LocalDate reportDate, LocalDate lastReportDate, String resolution, boolean sentMessage) {
+    public Report(Long id, //Users users,
+                  Long idUsers, Byte[] photo, String diet, String health, String habits,
+                  LocalDate reportDate, LocalDate lastReportDate, EnumResolution resolution, boolean sentMessage) {
         this.id = id;
+//        this.users = users;
         this.idUsers = idUsers;
         this.photo = photo;
         this.diet = diet;
@@ -105,11 +108,11 @@ public class Report {
         this.lastReportDate = lastReportDate;
     }
 
-    public String getResolution() {
+    public EnumResolution getResolution() {
         return resolution;
     }
 
-    public void setResolution(String resolution) {
+    public void setResolution(EnumResolution resolution) {
         this.resolution = resolution;
     }
 

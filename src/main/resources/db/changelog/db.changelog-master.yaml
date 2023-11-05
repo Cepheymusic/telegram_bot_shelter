@@ -11,3 +11,6 @@ databaseChangeLog:
   - include:
       relativeToChangelogFile: true
       file: report.sql
+  - include:
+      relativeToChangelogFile: true
+      file: volunteer.sql

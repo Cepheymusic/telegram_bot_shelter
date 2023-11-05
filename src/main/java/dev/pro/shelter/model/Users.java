@@ -11,6 +11,7 @@ import java.util.Objects;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_users")
     private Long id;
     private Long chatId;
 
@@ -20,6 +21,12 @@ public class Users {
     @OneToMany(mappedBy = "report")
     @JsonIgnore
     private List<Report> reports;
+
+    @OneToOne(mappedBy = "id_cat_adopter")
+    private  CatAdopter catAdopter;
+    @OneToOne(mappedBy = "id_dog_adopter")
+    private DogAdopter dogAdopter;
+
 
     public Users(Long id, Long chatId, Contact contact) {
         this.id = id;

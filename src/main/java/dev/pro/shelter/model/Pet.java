@@ -7,13 +7,17 @@ import java.util.Objects;
 //@Entity
 @MappedSuperclass
 public abstract class Pet {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private int age;
     private String breed;
     private boolean healthRestrictions;
     private String status; // выбор из списка параметров - ENUM: IN THE SHELTER, PROBATION, GIVEN TO ADOPTER
 
-    public Pet(String name, int age, String breed, boolean healthRestrictions, String status) {
+    public Pet(Long id, String name, int age, String breed, boolean healthRestrictions, String status) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.breed = breed;
@@ -22,6 +26,14 @@ public abstract class Pet {
     }
 
     public Pet() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

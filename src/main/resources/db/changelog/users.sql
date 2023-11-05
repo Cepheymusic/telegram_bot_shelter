@@ -15,12 +15,14 @@ create table cat_adopter(
 id_cat_adopter bigserial primary key,
 address varchar,
 date_start_probation date,
-constraint "fk_users_catadopter" unique foreign key (id_users) references users(id)
+--constraint "fk_users_catadopter" unique foreign key (id_users) references users(id)
+id_users bigserial unique references users(id)
 );
 
 create table dog_adopter(
 id_dog_adopter bigserial primary key,
 address varchar,
 date_start_probation date,
-constraint "fk_users_dogadopter" unique foreign key (id_users) references users(id)
+--constraint "fk_users_dogadopter" unique foreign key (id_users) references users(id)
+id_users bigserial unique references users(id)
 );

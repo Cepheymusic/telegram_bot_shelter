@@ -2,6 +2,7 @@ package dev.pro.shelter.service.impl;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.request.SendMessage;
+import dev.pro.shelter.model.EnumResolution;
 import dev.pro.shelter.model.Report;
 import dev.pro.shelter.repository.ReportRepository;
 import dev.pro.shelter.service.ReportService;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -45,7 +47,17 @@ public class ReportServiceImpl implements ReportService {
         }
     }
 
+//    @Override
+//    public LocalDate readLastDate(long id) {
+//        return null;    }
+
     @Override
-    public LocalDate readLastDate() {
-        repository    }
+    public LocalDate readDailyReportMaxData(long idUsers){
+        return repository.readDailyReportMaxDataParamsNative(idUsers);
+    }
+
+    @Override
+    public List<Long> idAdoptersWithStatusParams(EnumResolution resolution){
+        return repository.idAdoptersWithStatusParamsNative(resolution);
+    }
 }

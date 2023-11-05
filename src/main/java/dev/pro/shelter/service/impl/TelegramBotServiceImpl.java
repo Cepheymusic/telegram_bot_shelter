@@ -96,4 +96,9 @@ public class TelegramBotServiceImpl implements TelegramBotService {
         telegramBot.execute(result);
         logger.info("for chat with id {} contact data was saved {}", idChat, caption);
     }
+
+    @Override
+    public void sendMessageFromReportManagement(long idChat, String text) {
+        telegramBot.execute(new SendMessage(idChat, text));
+    }
 }
