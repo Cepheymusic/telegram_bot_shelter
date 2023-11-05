@@ -3,14 +3,14 @@
 -- changeset laserova:4
 create table reports(
 id bigserial primary key,
-user_id bigint,
-pet_id bigint,
-file_path varchar,
-file_size bigint,
-media_type varchar(30),
-data bytea,
+id_users bigint,
+photo bytea,
 diet varchar,
+health varchar,
 habits varchar,
-probation_days smallint,
-last_report_date timestamp without time zone
+report_date date,
+last_report_date date,
+resolution varchar(30) default 'probation',
+send_message boolean default false,
+constraint "fk_users_reports" foreign key (id_users) references users(id)
 );

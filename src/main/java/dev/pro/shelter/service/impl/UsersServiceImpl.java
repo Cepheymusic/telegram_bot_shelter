@@ -1,11 +1,9 @@
 package dev.pro.shelter.service.impl;
 
 import dev.pro.shelter.exception.UsersException;
-import dev.pro.shelter.model.Contact;
 import dev.pro.shelter.model.Users;
 import dev.pro.shelter.repository.UsersRepository;
 import dev.pro.shelter.service.UsersService;
-import dev.pro.shelter.tools.Parsers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -49,13 +47,24 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Users updateUser(Users user){
+    public Users updateUser(Users user) {
         logger.info("The Update method was called with data {}", user);
-        if (repository.findById(user.getId()).isEmpty()) {
+        if (repository.findById(user.getIdUsers()).isEmpty()) {
             throw new UsersException("failure identification");
         }
         Users updatedUser = repository.save(user);
         logger.info("Returned from the Update method {}", updatedUser);
         return updatedUser;
+    }
+
+    @Override
+    public long findUserIdFromChatId(Long chatId) {
+        //сделать нормально проверку опшнла и логгер
+        return repository.findByChatId(chatId).get().getIdUsers();
+    }
+
+    @Override
+    public Users readUser(Long id) {
+        return repository.findById(id).orElseThrow(() -> new UsersException("Нет человека с таким id " + id));
     }
 }

@@ -7,21 +7,14 @@ import java.util.Objects;
 //@Entity
 @MappedSuperclass
 public abstract class Pet {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String name;
-    @Embedded
-    private PhotoPet photo;
     private int age;
     private String breed;
     private boolean healthRestrictions;
-    private String status; // выбор из списка параметров: in a shelter; probation; finally given to the owner
+    private String status; // выбор из списка параметров - ENUM: IN THE SHELTER, PROBATION, GIVEN TO ADOPTER
 
-    public Pet(Long id, String name, PhotoPet photo, int age, String breed, boolean healthRestrictions, String status) {
-        this.id = id;
+    public Pet(String name, int age, String breed, boolean healthRestrictions, String status) {
         this.name = name;
-        this.photo = photo;
         this.age = age;
         this.breed = breed;
         this.healthRestrictions = healthRestrictions;
@@ -31,28 +24,12 @@ public abstract class Pet {
     public Pet() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public PhotoPet getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(PhotoPet photo) {
-        this.photo = photo;
     }
 
     public int getAge() {
@@ -95,13 +72,6 @@ public abstract class Pet {
         return age == pet.age && healthRestrictions == pet.healthRestrictions && Objects.equals(name, pet.name) &&
                 Objects.equals(breed, pet.breed) && Objects.equals(status, pet.status);
     }
-    //    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof Pet pet)) return false;
-//        return getAge() == pet.getAge() && isHealthRestrictions() == pet.isHealthRestrictions() && Objects.equals(getName(), pet.getName()) && Arrays.equals(getPhoto(), pet.getPhoto()) && Objects.equals(getBreed(), pet.getBreed()) && Objects.equals(getDiet(), pet.getDiet()) && Objects.equals(getHabits(), pet.getHabits()) && Objects.equals(getStatus(), pet.getStatus());
-//    }
-
 
     @Override
     public int hashCode() {
@@ -111,7 +81,6 @@ public abstract class Pet {
     @Override
     public String toString() {
         return "Pet{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", breed='" + breed + '\'' +

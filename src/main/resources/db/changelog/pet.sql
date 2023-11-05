@@ -1,28 +1,24 @@
 -- liquibase formatted sql
 
--- changeset laserova:2
+-- changeset laserova:3
 create table cat(
 id bigserial primary key,
+id_cat_adopter bigint,
 name varchar(15),
-file_path varchar,
-file_size bigint,
-media_type varchar(30),
-data bytea,
 age integer,
 breed varchar(20),
 health_restrictions boolean,
-status varchar(30)
+status varchar(30),
+constraint "fk_cat_adopter" foreign key (id_cat_adopter) references cat_adopter(id)
 );
 
 create table dog(
 id bigserial primary key,
+id_dog_adopter bigint,
 name varchar(15),
-file_path varchar,
-file_size bigint,
-media_type varchar(30),
-data bytea,
 age integer,
 breed varchar(20),
 health_restrictions boolean,
-status varchar(30)
+status varchar(30),
+constraint "fk_dog_adopter" foreign key (id_dog_adopter) references dog_adopter(id)
 );

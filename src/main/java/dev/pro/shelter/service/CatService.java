@@ -3,7 +3,7 @@ package dev.pro.shelter.service;
 import dev.pro.shelter.model.Cat;
 
 
-public interface CatService extends PetService{
+public interface CatService{
     Cat createCat(Cat cat);
     Cat readCat(long id);
     Cat updateCat(Cat cat);

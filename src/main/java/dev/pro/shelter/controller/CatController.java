@@ -18,7 +18,7 @@ public class CatController {
         return catService.createCat(cat);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Cat readCat(@PathVariable int id) {
         return catService.readCat(id);
     }

@@ -1,7 +1,6 @@
 package dev.pro.shelter.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,20 +8,18 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)//test
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)//test
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long chatId;
 
     @Embedded
     private Contact contact;
 
-//    @OneToMany(mappedBy = "report")
-//    @JsonIgnore
-//    private List<Report> reports;
+    @OneToMany(mappedBy = "report")
+    @JsonIgnore
+    private List<Report> reports;
 
     public Users(Long id, Long chatId, Contact contact) {
         this.id = id;
@@ -33,11 +30,11 @@ public class Users {
     public Users() {
     }
 
-    public Long getId() {
+    public Long getIdUsers() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setIdUsers(Long id) {
         this.id = id;
     }
 
