@@ -1,7 +1,6 @@
 package dev.pro.shelter.model;
 
 public enum EnumResolution {
-    PROBATION("стандартный испытательный срок"),
     TRANSFER_TO_ADOPTER("Поздравляем - испытательный период для вас и вашего питомца завершился, и новый друг теперь " +
             "остается с вами!"),
     RETURN_IN_SHELTER("Сожалеем, но по решению специалистов адаптация питомца происходила неуспешно. Необходимо будет " +
@@ -12,7 +11,7 @@ public enum EnumResolution {
     PROBATION_30DAY("У вас оказался непростой случай, и было решено продлить испытательный срок еще на 30 дней. " +
             "Не забывайте в течение этого периода продолжать отправлять ежедневные отчеты!");
 
-    private String text;
+    private final String text;
 
     EnumResolution(String text) {
         this.text = text;

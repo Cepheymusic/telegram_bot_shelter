@@ -10,9 +10,9 @@ health varchar,
 habits varchar,
 report_date date,
 last_report_date date,
-resolution varchar(30) default 'probation',
+resolution varchar(30),
 sent_message boolean default false,
 id_users bigserial references users(id)
 --constraint "fk_users_reports" foreign key (id_users) references users(id)
 );
---`status` ENUM('new', 'progress', 'done', 'fauled') NOT NULL,
+--resolution` ENUM('TRANSFER_TO_ADOPTER', 'RETURN_IN_SHELTER', 'PROBATION_15DAY', 'PROBATION_30DAY') NOT NULL,

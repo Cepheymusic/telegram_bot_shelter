@@ -47,10 +47,6 @@ public class ReportServiceImpl implements ReportService {
         }
     }
 
-//    @Override
-//    public LocalDate readLastDate(long id) {
-//        return null;    }
-
     @Override
     public LocalDate readDailyReportMaxData(long idUsers){
         return repository.readDailyReportMaxDataParamsNative(idUsers);
@@ -60,4 +56,9 @@ public class ReportServiceImpl implements ReportService {
     public List<Long> idAdoptersWithStatusParams(EnumResolution resolution){
         return repository.idAdoptersWithStatusParamsNative(resolution);
     }
-}
+
+//    @Override
+//    public void isSent(){
+
+    }
+

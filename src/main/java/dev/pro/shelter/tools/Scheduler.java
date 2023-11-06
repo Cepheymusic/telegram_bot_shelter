@@ -1,5 +1,6 @@
 package dev.pro.shelter.tools;
 
+import dev.pro.shelter.model.EnumResolution;
 import dev.pro.shelter.model.Report;
 import dev.pro.shelter.service.*;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -23,7 +24,7 @@ public class Scheduler {
     }
 
     @Scheduled(cron = "0 0 21 * * *")
-    public void AnalyzeDailyReport() {
+    public void CheckDailyReport() {
         List<Report> dailyReports = reportService.readAllDailyReport();
         for (Report reports : dailyReports) {
             if ((reportService.readDailyReportMaxData(reports.getIdUsers()).until(LocalDate.now(), ChronoUnit.DAYS)) < 2) {
@@ -31,37 +32,17 @@ public class Scheduler {
                         "отправки ежедневного отчета о вашем питомце. Пожалуйста будьте аккуратнее и не забывайте отправить отчет " +
                         "по образцу своевременно!");
             } else {
-                botService.sendMessageFromReportManagement(volunteerService.getRandomVolunteerChatId(),"Два дня и более не поступает отчет от пользователя" +
-                        "с idUser " + reports.getIdUsers());
+                botService.sendMessageFromReportManagement(volunteerService.getRandomVolunteerChatId(), "Два дня " +
+                        "и более не поступает отчет от пользователя с idUser " + reports.getIdUsers());
             }
         }
     }
 
-//    @Scheduled(cron = "0 30 23 * * *")
-//    public void AnalyzeStatusReport() {
-
-////        reportService.idAdoptersWithStatusParamsNative(resolution);
-////        for (Report reports : dailyReports) {
-////            if ((reportService.readDailyReportMaxData(reports.getIdUsers()).until(LocalDate.now(), ChronoUnit.DAYS)) < 2) {
-//
-//
-//            } else {
-//
-//            }
-//        }
-//    }
-
-
-//    @Scheduled(cron="0 0/1 * * * *")
-//    public void NotificationSentNow(){
-//        LocalDateTime dateTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
-//        Collection<NotificationTask> tasks_now = repository.findByDateTime(dateTime);
-//        for(NotificationTask task:tasks_now){
-//            logger.info("sending task {}",task);
-//            var response = new SendMessage(task.getChatId(),task.getNotification());
-//            telegramBot.execute(response);
-//            task.setSent(true);
-//            repository.save(task);
-//        }
-//    }
+    @Scheduled(cron = "0 30 23 * * *")
+    public void CheckStatusReport() {
+        for (EnumResolution res : EnumResolution.values()) {
+            reportService.idAdoptersWithStatusParams(res)
+                    .forEach(id -> botService.sendMessageFromReportManagement(id, res.getText()));
+        }
+    }
 }
