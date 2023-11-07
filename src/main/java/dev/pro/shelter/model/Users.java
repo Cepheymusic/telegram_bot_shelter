@@ -1,7 +1,6 @@
 package dev.pro.shelter.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,15 +11,22 @@ import java.util.Objects;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     private Long chatId;
 
     @Embedded
     private Contact contact;
 
-//    @OneToMany(mappedBy = "report")
-//    @JsonIgnore
-//    private List<Report> reports;
+    @OneToMany(mappedBy = "users")
+    @JsonIgnore
+    private List<Report> reports;
+
+    @OneToOne(mappedBy = "users")
+    private  CatAdopter catAdopter;
+    @OneToOne(mappedBy = "users")
+    private DogAdopter dogAdopter;
+
 
     public Users(Long id, Long chatId, Contact contact) {
         this.id = id;
@@ -31,11 +37,11 @@ public class Users {
     public Users() {
     }
 
-    public Long getId() {
+    public Long getIdUsers() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setIdUsers(Long id) {
         this.id = id;
     }
 

@@ -4,12 +4,14 @@ package dev.pro.shelter.service.impl;
 
 import dev.pro.shelter.exception.DogNotFoundException;
 import dev.pro.shelter.model.Dog;
+import dev.pro.shelter.model.DogAdopter;
 import dev.pro.shelter.repository.DogRepository;
 import dev.pro.shelter.service.DogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service

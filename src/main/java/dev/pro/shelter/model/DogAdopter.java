@@ -3,30 +3,76 @@ package dev.pro.shelter.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
-//@Entity(name = "dog_adopter")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class DogAdopter extends PetAdopter{
+@Entity
+@Table(name = "dog_adopter")
+public class DogAdopter {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long idDogAdopter;
+    //    private long idUser;
+    @OneToOne
+    @JoinColumn(name = "id_users")
+    private Users users;
+    private String address;
+    private LocalDate dateStartProbation; //формат даты формат даты YYYY-MM-DD
 
-    private Long dogId;
+
+    @OneToMany(mappedBy = "dogAdopter")
+    @JsonIgnore
+    private List<Dog> dogs;
 
 
-    public DogAdopter(Long id, Long chatId, String name, String surname, String phone, String email, String address) {
-        super(id, chatId, name, surname, phone, email, address);
+    public DogAdopter(Long idDogAdopter, Users users, String address, LocalDate dateStartProbation) {
+        this.idDogAdopter = idDogAdopter;
+        this.users = users;
+        this.address = address;
+        this.dateStartProbation = dateStartProbation;
     }
 
-//    @OneToMany(mappedBy = "dog_adopter")
-//    @JsonIgnore
-//    private List<Dog> dogs;
-
-
-    public Long getDogId() {
-        return dogId;
+    public DogAdopter() {
     }
 
-    public void setDogId(Long dogId) {
-        this.dogId = dogId;
+    public Long getIdDogAdopter() {
+        return idDogAdopter;
+    }
+
+    public void setIdDogAdopter(Long id) {
+        this.idDogAdopter = idDogAdopter;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public LocalDate getDateStartProbation() {
+        return dateStartProbation;
+    }
+
+    public void setDateStartProbation(LocalDate dateStartProbation) {
+        this.dateStartProbation = dateStartProbation;
+    }
+
+    public List<Dog> getDogs() {
+        return dogs;
+    }
+
+    public void setDogs(List<Dog> dogs) {
+        this.dogs = dogs;
     }
 }

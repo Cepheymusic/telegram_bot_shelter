@@ -9,4 +9,7 @@ public interface UsersService {
     Users createUser(Long chatId);
     Users findByChatId(Long chatId);
     Users updateUser(Users user);
+    long findUserIdFromChatId(Long chatId);
+
+    Users readUser(Long id);
 }

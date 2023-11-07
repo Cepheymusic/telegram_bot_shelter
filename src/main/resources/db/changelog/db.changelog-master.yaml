@@ -4,10 +4,13 @@ databaseChangeLog:
 #      file: adopter.sql
   - include:
       relativeToChangelogFile: true
-      file: pet.sql
-  - include:
-      relativeToChangelogFile: true
       file: users.sql
   - include:
       relativeToChangelogFile: true
+      file: pet.sql
+  - include:
+      relativeToChangelogFile: true
       file: report.sql
+  - include:
+      relativeToChangelogFile: true
+      file: volunteer.sql

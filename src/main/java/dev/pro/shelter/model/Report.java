@@ -1,54 +1,126 @@
 package dev.pro.shelter.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "reports")
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
-    private long userId;
-    private long petId;
-    private Byte[] photoPet;
-    private String diet; // выбор из списка параметров
-    private String habits; // свободное описание
-    private byte probationDays;
-    private LocalDateTime lastReportDate;
-    private boolean missedOneDay;
-    private boolean missedTwoDay;
-//
-//
-////    @ManyToMany
-////    List<CatAdopter> catAdopters;
-////    @ManyToMany
-////    List<DogAdopter> dogAdopters;
-//
-////    @ManyToOne(fetch = FetchType.LAZY)
-////    @JoinColumn(referencedColumnName = "cat_adopter_id")
-////    private CatAdopter catAdopters;
-////    @ManyToOne(fetch = FetchType.LAZY)
-////    @JoinColumn(referencedColumnName = "dog_adopter_id")
-////    private DogAdopter dogAdopters;
-//    @ManyToOne
-//    @JoinColumn(referencedColumnName = "cat_adopter_id")
-//    private CatAdopter catAdopters;
-//    @ManyToOne
-//    @JoinColumn(referencedColumnName = "dog_adopter_id")
-//    private DogAdopter dogAdopters;
-//
-////    private String filePath;
-////    /**
-////     * Size of sent file
-////     * @param fileSize
-////     */
-////    private Long fileSize;
-////    /**
-////     * Byte array for file transfer
-////     * @param data
-////     */
-////    @Lob
-////    private byte[] data;
-//
+    private Long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_users")
+    private Users users;
+//    private Long idUsers;
+    private Byte[] photo;
+    private String diet;
+    private String health;
+    private String habits;
+    private LocalDate reportDate; //формат даты формат даты YYYY-MM-DD
+    private LocalDate lastReportDate; //формат даты формат даты YYYY-MM-DD
+    @Column(name = "resolution")
+    @Enumerated(EnumType.STRING)
+    private EnumResolution resolution; //по умолчанию - на испытательный срок PROBATION;
+    private boolean sentMessage; //по умолчанию - ложно
+
+
+    public Report(Long id, //Users users,
+                  Byte[] photo, String diet, String health, String habits,
+                  LocalDate reportDate, LocalDate lastReportDate, EnumResolution resolution, boolean sentMessage) {
+        this.id = id;
+//        this.users = users;
+//        this.idUsers = idUsers;
+        this.photo = photo;
+        this.diet = diet;
+        this.health = health;
+        this.habits = habits;
+        this.reportDate = reportDate;
+        this.lastReportDate = lastReportDate;
+        this.resolution = resolution;
+        this.sentMessage = sentMessage;
+    }
+
+    public Report() {
+    }
+
+    public Long getIdReports() {
+        return id;
+    }
+
+    public void setIdReports(long id) {
+        id = id;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public Byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Byte[] photo) {
+        this.photo = photo;
+    }
+
+    public String getDiet() {
+        return diet;
+    }
+
+    public void setDiet(String diet) {
+        this.diet = diet;
+    }
+
+    public String getHealth() {
+        return health;
+    }
+
+    public void setHealth(String health) {
+        this.health = health;
+    }
+
+    public String getHabits() {
+        return habits;
+    }
+
+    public void setHabits(String habits) {
+        this.habits = habits;
+    }
+
+    public LocalDate getReportDate() {
+        return reportDate;
+    }
+
+    public void setReportDate(LocalDate reportDate) {
+        this.reportDate = reportDate;
+    }
+
+    public LocalDate getLastReportDate() {
+        return lastReportDate;
+    }
+
+    public void setLastReportDate(LocalDate lastReportDate) {
+        this.lastReportDate = lastReportDate;
+    }
+
+    public EnumResolution getResolution() {
+        return resolution;
+    }
+
+    public void setResolution(EnumResolution resolution) {
+        this.resolution = resolution;
+    }
+
+    public boolean isSentMessage() {
+        return sentMessage;
+    }
+
+    public void setSentMessage(boolean sentMessage) {
+        this.sentMessage = sentMessage;
+    }
 }

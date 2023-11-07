@@ -17,7 +17,7 @@ public class DogController {
         return dogService.createDog(dog);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Dog readDog(@PathVariable int id) {
         return dogService.readDog(id);
     }

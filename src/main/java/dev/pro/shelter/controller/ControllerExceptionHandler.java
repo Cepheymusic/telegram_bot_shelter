@@ -1,9 +1,6 @@
 package dev.pro.shelter.controller;
 
-import dev.pro.shelter.exception.CatNotFoundException;
-import dev.pro.shelter.exception.DogNotFoundException;
-import dev.pro.shelter.exception.MessageNotFoundException;
-import dev.pro.shelter.exception.UsersException;
+import dev.pro.shelter.exception.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,14 +9,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
-
-
 @ControllerAdvice
 public class ControllerExceptionHandler {
     Logger logger = LoggerFactory.getLogger(ControllerExceptionHandler.class);
 
     @ExceptionHandler({CatNotFoundException.class, DogNotFoundException.class, MessageNotFoundException.class,
-            UsersException.class})
+            UsersException.class, ReportException.class})
     public ResponseEntity<String> handleShelterBotsException(RuntimeException ex) {
         logger.warn(ex.getMessage());
         return ResponseEntity
