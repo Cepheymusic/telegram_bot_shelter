@@ -11,8 +11,8 @@ import java.util.List;
 public class DogAdopter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_dog_adopter")
-    private Long id;
+    @Column(name = "idDogAdopter")
+    private Long idDogAdopter;
     //    private long idUser;
     @OneToOne
     @JoinColumn(name = "id_users")
@@ -21,13 +21,13 @@ public class DogAdopter {
     private LocalDate dateStartProbation; //формат даты формат даты YYYY-MM-DD
 
 
-    @OneToMany(mappedBy = "dog_adopter")
+    @OneToMany(mappedBy = "dogAdopter")
     @JsonIgnore
     private List<Dog> dogs;
 
 
-    public DogAdopter(Long id, Users users, String address, LocalDate dateStartProbation) {
-        this.id = id;
+    public DogAdopter(Long idDogAdopter, Users users, String address, LocalDate dateStartProbation) {
+        this.idDogAdopter = idDogAdopter;
         this.users = users;
         this.address = address;
         this.dateStartProbation = dateStartProbation;
@@ -36,12 +36,12 @@ public class DogAdopter {
     public DogAdopter() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdDogAdopter() {
+        return idDogAdopter;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdDogAdopter(Long id) {
+        this.idDogAdopter = idDogAdopter;
     }
 
     public Users getUsers() {

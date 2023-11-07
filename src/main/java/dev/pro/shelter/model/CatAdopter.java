@@ -13,8 +13,8 @@ public class CatAdopter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cat_adopter")
-    private Long id;
+    @Column(name = "id")
+    private Long idCatAdopter;
     //    private long idUser;
     @OneToOne
     @JoinColumn(name = "id_users")
@@ -22,13 +22,13 @@ public class CatAdopter {
     private String address;
     private LocalDate dateStartProbation; //формат даты YYYY-MM-DD
 
-    @OneToMany(mappedBy = "cat_adopter")
+    @OneToMany(mappedBy = "catAdopter")
     @JsonIgnore
     private List<Cat> cats;
 
 
-    public CatAdopter(Long id, Users users, String address, LocalDate dateStartProbation) {
-        this.id = id;
+    public CatAdopter(Long idCatAdopter, Users users, String address, LocalDate dateStartProbation) {
+        this.idCatAdopter = idCatAdopter;
         this.users = users;
         this.address = address;
         this.dateStartProbation = dateStartProbation;
@@ -37,12 +37,12 @@ public class CatAdopter {
     public CatAdopter() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdCatAdopter() {
+        return idCatAdopter;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdCatAdopter(Long id) {
+        this.idCatAdopter = idCatAdopter;
     }
 
     public Users getUsers() {

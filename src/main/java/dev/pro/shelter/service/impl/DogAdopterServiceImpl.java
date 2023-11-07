@@ -34,7 +34,7 @@ public class DogAdopterServiceImpl implements DogAdopterService {
         dogAdopter.setDateStartProbation(LocalDate.now());
         var adopter = repository.save(dogAdopter);
         Dog adoptedDog = catService.readDog(idDog);
-        adoptedDog.setAdopter(adopter);
+        adoptedDog.setDogAdopter(adopter);
         catService.updateDog(adoptedDog);
         return adopter;
     }
@@ -77,7 +77,7 @@ public class DogAdopterServiceImpl implements DogAdopterService {
 
     @Override
     public Long readDogAdopterIdFromChatId(long chatId){
-        return readDogAdopterFromChatId(chatId).getId();
+        return readDogAdopterFromChatId(chatId).getIdDogAdopter();
     }
     @Override
     public boolean existsDogAdopterByChatId(Long chatId) {

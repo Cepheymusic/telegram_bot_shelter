@@ -22,9 +22,9 @@ public class Users {
     @JsonIgnore
     private List<Report> reports;
 
-    @OneToOne(mappedBy = "id_cat_adopter")
+    @OneToOne(mappedBy = "idCatAdopter")
     private  CatAdopter catAdopter;
-    @OneToOne(mappedBy = "id_dog_adopter")
+    @OneToOne(mappedBy = "idDogAdopter")
     private DogAdopter dogAdopter;
 
 

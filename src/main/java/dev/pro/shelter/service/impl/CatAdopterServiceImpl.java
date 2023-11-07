@@ -35,7 +35,7 @@ public class CatAdopterServiceImpl implements CatAdopterService {
         catAdopter.setDateStartProbation(LocalDate.now());
         var adopter = repository.save(catAdopter);
         Cat adoptedCat = catService.readCat(idCat);
-        adoptedCat.setAdopter(adopter);
+        adoptedCat.setCatAdopter(adopter);
         catService.updateCat(adoptedCat);
         return adopter;
     }
@@ -78,7 +78,7 @@ public class CatAdopterServiceImpl implements CatAdopterService {
 
     @Override
     public Long readCatAdopterIdFromChatId(long chatId){
-        return readCatAdopterFromChatId(chatId).getId();
+        return readCatAdopterFromChatId(chatId).getIdCatAdopter();
     }
     @Override
     public boolean existsCatAdopterByChatId(Long chatId) {

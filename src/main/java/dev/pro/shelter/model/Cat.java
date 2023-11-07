@@ -8,24 +8,24 @@ import java.util.Set;
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Cat extends Pet {
     @ManyToOne
-    @JoinColumn(name = "id_cat_adopter")
-    private CatAdopter adopter;
+    @JoinColumn(name = "idCatAdopter")
+    private CatAdopter catAdopter;
 
-    public Cat(Long id, String name, int age, String breed, boolean healthRestrictions, String status, CatAdopter adopter) {
-        super(id, name, age, breed, healthRestrictions, status);
-        this.adopter = adopter;
+    public Cat(Long id, String name, int age, String breed, boolean healthRestrictions, CatAdopter catAdopter) {
+        super(id, name, age, breed, healthRestrictions);
+        this.catAdopter = catAdopter;
     }
 
     public Cat() {
         super();
     }
 
-    public CatAdopter getAdopter() {
-        return adopter;
+    public CatAdopter getCatAdopter() {
+        return catAdopter;
     }
 
-    public void setAdopter(CatAdopter adopter) {
-        this.adopter = adopter;
+    public void setCatAdopter(CatAdopter catAdopter) {
+        this.catAdopter = catAdopter;
     }
 
     @Override
@@ -34,11 +34,11 @@ public class Cat extends Pet {
         if (!(o instanceof Cat)) return false;
         if (!super.equals(o)) return false;
         Cat cat = (Cat) o;
-        return Objects.equals(getAdopter(), cat.getAdopter());
+        return Objects.equals(getCatAdopter(), cat.getCatAdopter());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getAdopter());
+        return Objects.hash(super.hashCode(), getCatAdopter());
     }
 }

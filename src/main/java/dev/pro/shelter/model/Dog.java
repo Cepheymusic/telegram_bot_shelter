@@ -8,24 +8,24 @@ import java.util.Objects;
 public class Dog extends Pet{
 
     @ManyToOne
-    @JoinColumn(name = "id_dog_adopter")
-    private DogAdopter adopter;
+    @JoinColumn(name = "idDogAdopter")
+    private DogAdopter dogAdopter;
 
-    public Dog(Long id, String name, int age, String breed, boolean healthRestrictions, String status, DogAdopter adopter) {
-        super(id, name, age, breed, healthRestrictions, status);
-        this.adopter = adopter;
+    public Dog(Long id, String name, int age, String breed, boolean healthRestrictions, DogAdopter dogAdopter) {
+        super(id, name, age, breed, healthRestrictions);
+        this.dogAdopter = dogAdopter;
     }
 
     public Dog() {
         super();
     }
 
-    public DogAdopter getAdopter() {
-        return adopter;
+    public DogAdopter getDogAdopter() {
+        return dogAdopter;
     }
 
-    public void setAdopter(DogAdopter adopter) {
-        this.adopter = adopter;
+    public void setDogAdopter(DogAdopter dogAdopter) {
+        this.dogAdopter = dogAdopter;
     }
 
     @Override
@@ -34,11 +34,11 @@ public class Dog extends Pet{
         if (!(o instanceof Dog)) return false;
         if (!super.equals(o)) return false;
         Dog dog = (Dog) o;
-        return Objects.equals(getAdopter(), dog.getAdopter());
+        return Objects.equals(getDogAdopter(), dog.getDogAdopter());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getAdopter());
+        return Objects.hash(super.hashCode(), getDogAdopter());
     }
 }

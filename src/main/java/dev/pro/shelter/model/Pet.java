@@ -14,15 +14,13 @@ public abstract class Pet {
     private int age;
     private String breed;
     private boolean healthRestrictions;
-    private String status; // выбор из списка параметров - ENUM: IN THE SHELTER, PROBATION, GIVEN TO ADOPTER
 
-    public Pet(Long id, String name, int age, String breed, boolean healthRestrictions, String status) {
+    public Pet(Long id, String name, int age, String breed, boolean healthRestrictions) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.breed = breed;
         this.healthRestrictions = healthRestrictions;
-        this.status = status;
     }
 
     public Pet() {
@@ -68,26 +66,18 @@ public abstract class Pet {
         this.healthRestrictions = healthRestrictions;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
         return age == pet.age && healthRestrictions == pet.healthRestrictions && Objects.equals(name, pet.name) &&
-                Objects.equals(breed, pet.breed) && Objects.equals(status, pet.status);
+                Objects.equals(breed, pet.breed);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAge(), getBreed(), isHealthRestrictions(), getStatus());
+        return Objects.hash(getName(), getAge(), getBreed(), isHealthRestrictions());
     }
 
     @Override
@@ -97,7 +87,6 @@ public abstract class Pet {
                 ", age=" + age +
                 ", breed='" + breed + '\'' +
                 ", healthRestrictions=" + healthRestrictions +
-                ", status='" + status + '\'' +
                 '}';
     }
 }
