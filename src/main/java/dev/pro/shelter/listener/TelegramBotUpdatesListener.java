@@ -81,6 +81,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     long idChat5 = update.message().chat().id();
                     telegramBotService.addContactToUser(contactMessage, idChat5);
                 }
+                //message.caption
             }
             if (update.callbackQuery() != null) {
                 String call_data = update.callbackQuery().data();
