@@ -47,7 +47,7 @@ public class DogAdopterServiceImpl implements DogAdopterService {
 
     @Override
     public DogAdopter updateDogAdopter(long idUser) {
-        return repository.findByUserId(idUser).orElseThrow(()->new UsersException("Желающего забрать собаку человека " +
+        return repository.findByUsersId(idUser).orElseThrow(()->new UsersException("Желающего забрать собаку человека " +
                 "с таким id нет"));
     }
 
@@ -68,7 +68,7 @@ public class DogAdopterServiceImpl implements DogAdopterService {
 
     @Override
     public DogAdopter readDogAdopterByUserId(long userId) {
-        Optional<DogAdopter> adopter = repository.findByUserId(userId);
+        Optional<DogAdopter> adopter = repository.findByUsersId(userId);
         if (adopter.isEmpty()) {
             throw new DogNotFoundException("Желающего забрать собаку человека с таким id нет");
         }

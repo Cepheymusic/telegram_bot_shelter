@@ -11,20 +11,20 @@ import java.util.Objects;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_users")
+    @Column(name = "id")
     private Long id;
     private Long chatId;
 
     @Embedded
     private Contact contact;
 
-    @OneToMany(mappedBy = "report")
+    @OneToMany(mappedBy = "users")
     @JsonIgnore
     private List<Report> reports;
 
-    @OneToOne(mappedBy = "idCatAdopter")
+    @OneToOne(mappedBy = "users")
     private  CatAdopter catAdopter;
-    @OneToOne(mappedBy = "idDogAdopter")
+    @OneToOne(mappedBy = "users")
     private DogAdopter dogAdopter;
 
 

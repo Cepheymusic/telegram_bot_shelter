@@ -11,7 +11,7 @@ import java.util.List;
 public class DogAdopter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idDogAdopter")
+    @Column(name = "id")
     private Long idDogAdopter;
     //    private long idUser;
     @OneToOne

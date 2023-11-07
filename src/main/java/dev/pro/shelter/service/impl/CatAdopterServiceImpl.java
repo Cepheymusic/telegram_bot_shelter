@@ -47,7 +47,7 @@ public class CatAdopterServiceImpl implements CatAdopterService {
 
     @Override
     public CatAdopter updateCatAdopter(long idUser) {
-        return repository.findByUserId(idUser).orElseThrow(()->new UsersException("Желающего забрать кота человека " +
+        return repository.findByUsersId(idUser).orElseThrow(()->new UsersException("Желающего забрать кота человека " +
                 "с таким id нет"));
     }
 
@@ -69,7 +69,7 @@ public class CatAdopterServiceImpl implements CatAdopterService {
 
     @Override
     public CatAdopter readCatAdopterByUserId(long userId) {
-        Optional<CatAdopter> adopter = repository.findByUserId(userId);
+        Optional<CatAdopter> adopter = repository.findByUsersId(userId);
         if (adopter.isEmpty()) {
             throw new CatNotFoundException("Желающего забрать кота человека с таким id нет");
         }

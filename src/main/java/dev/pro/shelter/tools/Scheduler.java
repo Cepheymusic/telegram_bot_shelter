@@ -27,13 +27,13 @@ public class Scheduler {
     public void CheckDailyReport() {
         List<Report> dailyReports = reportService.readAllDailyReport();
         for (Report reports : dailyReports) {
-            if ((reportService.readDailyReportMaxData(reports.getIdUsers()).until(LocalDate.now(), ChronoUnit.DAYS)) < 2) {
-                botService.sendMessageFromReportManagement(reports.getIdUsers(), "Дорогой усыновитель,вы пропустили время " +
+            if ((reportService.readDailyReportMaxData(reports.getUsers().getIdUsers()).until(LocalDate.now(), ChronoUnit.DAYS)) < 2) {
+                botService.sendMessageFromReportManagement(reports.getUsers().getIdUsers(), "Дорогой усыновитель,вы пропустили время " +
                         "отправки ежедневного отчета о вашем питомце. Пожалуйста будьте аккуратнее и не забывайте отправить отчет " +
                         "по образцу своевременно!");
             } else {
                 botService.sendMessageFromReportManagement(volunteerService.getRandomVolunteerChatId(), "Два дня " +
-                        "и более не поступает отчет от пользователя с idUser " + reports.getIdUsers());
+                        "и более не поступает отчет от пользователя с idUser " + reports.getUsers().getIdUsers());
             }
         }
     }

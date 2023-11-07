@@ -78,7 +78,7 @@ public class TelegramBotServiceImpl implements TelegramBotService {
             String diet = reportText[0];
             String health = reportText[1];
             String habits = reportText[2];
-            report.setIdUsers(adopterId);
+            report.getUsers().setIdUsers(adopterId);
             report.setReportDate(reportDate);
 //            report.setLastReportDate(lastReportDate);
             report.setPhoto(photo);

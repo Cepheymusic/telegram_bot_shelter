@@ -1,5 +1,6 @@
 package dev.pro.shelter.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ public class Volunteer {
    @Id
    @GeneratedValue
    private Integer id;
+   @Column(name = "chat_id")
    private Long idChat;
    private String name;
    private String phone;

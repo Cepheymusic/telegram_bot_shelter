@@ -16,7 +16,7 @@ id bigserial primary key,
 address varchar,
 date_start_probation date,
 --constraint "fk_users_catadopter" unique foreign key (id_users) references users(id)
-id_users bigserial unique references users(id)
+id_users bigint unique references users(id)
 --id_users bigserial references users(id)
 );
 
@@ -25,6 +25,6 @@ id bigserial primary key,
 address varchar,
 date_start_probation date,
 --constraint "fk_users_dogadopter" unique foreign key (id_users) references users(id)
-id_users bigserial unique references users(id)
+id_users bigint unique references users(id)
 --id_users bigserial references users(id)
 );

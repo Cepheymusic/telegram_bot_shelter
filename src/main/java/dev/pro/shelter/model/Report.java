@@ -10,9 +10,9 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id_users")
+    @JoinColumn(name = "id_users")
     private Users users;
-    private Long idUsers;
+//    private Long idUsers;
     private Byte[] photo;
     private String diet;
     private String health;
@@ -26,11 +26,11 @@ public class Report {
 
 
     public Report(Long id, //Users users,
-                  Long idUsers, Byte[] photo, String diet, String health, String habits,
+                  Byte[] photo, String diet, String health, String habits,
                   LocalDate reportDate, LocalDate lastReportDate, EnumResolution resolution, boolean sentMessage) {
         this.id = id;
 //        this.users = users;
-        this.idUsers = idUsers;
+//        this.idUsers = idUsers;
         this.photo = photo;
         this.diet = diet;
         this.health = health;
@@ -52,12 +52,12 @@ public class Report {
         id = id;
     }
 
-    public Long getIdUsers() {
-        return idUsers;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setIdUsers(long adopterId) {
-        this.idUsers = adopterId;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     public Byte[] getPhoto() {
