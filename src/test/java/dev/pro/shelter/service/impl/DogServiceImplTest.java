@@ -20,7 +20,7 @@ class DogServiceImplTest {
     DogServiceImpl underTest;
     @Mock
     private DogRepository repository;
-    static Dog dog1 = new Dog(1L, "Caty", null, 5, "mainkun", true,"free");
+    static Dog dog1 = new Dog(1L, "Caty", 5, "mainkun", true,null);
 
     @BeforeEach
     void beforeEach() {

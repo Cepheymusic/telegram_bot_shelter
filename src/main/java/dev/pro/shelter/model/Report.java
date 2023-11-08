@@ -13,7 +13,7 @@ public class Report {
     @JoinColumn(name = "id_users")
     private Users users;
 //    private Long idUsers;
-    private Byte[] photo;
+//     private Byte[] photo;
     private String diet;
     private String health;
     private String habits;
@@ -25,13 +25,13 @@ public class Report {
     private boolean sentMessage; //по умолчанию - ложно
 
 
-    public Report(Long id, //Users users,
-                  Byte[] photo, String diet, String health, String habits,
+    public Report(Long id, /*Users users,
+                  Byte[] photo,*/ String diet, String health, String habits,
                   LocalDate reportDate, LocalDate lastReportDate, EnumResolution resolution, boolean sentMessage) {
         this.id = id;
 //        this.users = users;
 //        this.idUsers = idUsers;
-        this.photo = photo;
+//        this.photo = photo;
         this.diet = diet;
         this.health = health;
         this.habits = habits;
@@ -60,13 +60,13 @@ public class Report {
         this.users = users;
     }
 
-    public Byte[] getPhoto() {
-        return photo;
-    }
+//    public Byte[] getPhoto() {
+//        return photo;
+//    }
 
-    public void setPhoto(Byte[] photo) {
-        this.photo = photo;
-    }
+//    public void setPhoto(Byte[] photo) {
+//        this.photo = photo;
+//    }
 
     public String getDiet() {
         return diet;

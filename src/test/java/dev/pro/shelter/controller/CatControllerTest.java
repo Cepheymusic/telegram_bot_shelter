@@ -19,6 +19,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -35,9 +36,10 @@ class CatControllerTest {
     void afterEach() {
         catRepository.deleteAll();
     }
-    static Cat cat1 = new Cat(1L, "Caty", null, 5, "mainkun", true,"free");
+    static Cat cat1 = new Cat(1L, "Caty", 5, "mainkun", true, null);
     @Test
     void createCat_returnStatus200AndCat() {
+        when(catRepository.save(cat1)).thenReturn(cat1);
         ResponseEntity<Cat> catResponseEntity = restTemplate.postForEntity(
                 "http://localhost:" + port + "/cat", cat1, Cat.class);
         assertEquals(HttpStatus.OK, catResponseEntity.getStatusCode());
@@ -47,7 +49,7 @@ class CatControllerTest {
     @Test
     void readCat_catNotInDb_returnStatus400AndMessage() {
         ResponseEntity<String> catResponseEntity = restTemplate.getForEntity(
-                "http://localhost:" + port + "/cat/" + cat1, String.class);
+                "http://localhost:" + port + "/cat/" + cat1.getId(), String.class);
         assertEquals(HttpStatus.BAD_REQUEST, catResponseEntity.getStatusCode());
         assertEquals("Котэ нет", catResponseEntity.getBody());
     }

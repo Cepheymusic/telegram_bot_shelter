@@ -2,6 +2,7 @@ package dev.pro.shelter.service.impl;
 
 import dev.pro.shelter.exception.CatNotFoundException;
 import dev.pro.shelter.model.Cat;
+import dev.pro.shelter.model.CatAdopter;
 import dev.pro.shelter.repository.CatRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ class CatServiceImplTest {
     CatServiceImpl underTest;
     @Mock
     private CatRepository repository;
-    static Cat cat1 = new Cat(1L, "Caty", null, 5, "mainkun", true,"free");
+    static Cat cat1 = new Cat(1L, "Caty", 5, "mainkun", true, null);
 
     @BeforeEach
     void beforeEach() {
