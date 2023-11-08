@@ -81,6 +81,14 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     long idChat5 = update.message().chat().id();
                     telegramBotService.addContactToUser(contactMessage, idChat5);
                 }
+                if (update.message().text().startsWith("/report")) {
+                    String reportMessage = update.message().text();
+                    long idChat1 = update.message().chat().id();
+                    telegramBotService.addReportToDB(idChat1, reportMessage);
+                }
+
+
+
             }
             if (update.callbackQuery() != null) {
                 String call_data = update.callbackQuery().data();
@@ -139,6 +147,9 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 } else if (call_data.equals("reasonsForRefusal")) {
                     SendMessage messageReasonsForRefusal = new SendMessage(idChat, EnumsInfo2.REASONS_FOR_REFUSAL.getText());
                     telegramBot.execute(messageReasonsForRefusal);
+                } else if (call_data.equals("sendDogReport")) {
+                    SendMessage messageSampleReport = new SendMessage(idChat, EnumsInfo.SEND_REPORT.getText());
+                    telegramBot.execute(messageSampleReport);
                 }
             }
         });

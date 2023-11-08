@@ -16,6 +16,7 @@ public class KeyboardMarkup {
         markupInlineDog.addRow(new InlineKeyboardButton("Рекомендации о технике безопасности на территории приюта").callbackData("safetyPrecautions"));
         markupInlineDog.addRow(new InlineKeyboardButton("Позвать волонтёра").callbackData("volunteer"),
                 new InlineKeyboardButton("Отправить контактные данные").callbackData("sendContact"));
+        markupInlineDog.addRow(new InlineKeyboardButton("Отправить отчёт").callbackData("sendDogReport"));
         return markupInlineDog;
     }
 
@@ -27,6 +28,7 @@ public class KeyboardMarkup {
         markupInlineCat.addRow(new InlineKeyboardButton("Рекомендации о технике безопасности на территории приюта").callbackData("safetyPrecautions"));
         markupInlineCat.addRow(new InlineKeyboardButton("Позвать волонтёра").callbackData("volunteer"),
                 new InlineKeyboardButton("Отправить контактные данные").callbackData("sendContact"));
+        markupInlineCat.addRow(new InlineKeyboardButton("Отправить отчёт").callbackData("sendCatReport"));
         return markupInlineCat;
     }
 

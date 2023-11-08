@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 
-//@Entity
 @MappedSuperclass
 public abstract class Pet {
     @Id
