@@ -59,7 +59,7 @@ public class TelegramBotServiceImpl implements TelegramBotService {
     }
 
     @Override
-    public void addReportToDB(long idChat, String caption) {
+    public void addReportToDB(long idChat, String reportMessage) {
         Report report = new Report();
         SendMessage result;
         try {
@@ -73,28 +73,28 @@ public class TelegramBotServiceImpl implements TelegramBotService {
                 LocalDate lastReportDate = dogAdopterService.readStartDate(adopterId).plusDays(30);
                 report.setLastReportDate(lastReportDate);
             }
-            Byte[] photo = new Byte[]{};//тут метод, вынимающий фото из ТгБота
-            String[] reportText = Parsers.parseReportText(caption);
+//            Byte[] photo = new Byte[]{};//тут метод, вынимающий фото из ТгБота
+            String[] reportText = Parsers.parseReportText(reportMessage);
             String diet = reportText[0];
             String health = reportText[1];
             String habits = reportText[2];
             report.getUsers().setIdUsers(adopterId);
             report.setReportDate(reportDate);
 //            report.setLastReportDate(lastReportDate);
-            report.setPhoto(photo);
+//            report.setPhoto(photo);
             report.setDiet(diet);
             report.setHealth(health);
             report.setHabits(habits);
         } catch (Exception ex) {
             result = new SendMessage(idChat, "Ошибка формата данных");
             telegramBot.execute(result);
-            logger.warn("from chat with id {} was sent incorrect request {}, report was not saved", idChat, caption);
+            logger.warn("from chat with id {} was sent incorrect request {}, report was not saved", idChat, reportMessage);
             return;
         }
         reportService.update(report);
         result = new SendMessage(idChat, "Отчет сохранен");
         telegramBot.execute(result);
-        logger.info("for chat with id {} contact data was saved {}", idChat, caption);
+        logger.info("for chat with id {} contact data was saved {}", idChat, reportMessage);
     }
 
     @Override
