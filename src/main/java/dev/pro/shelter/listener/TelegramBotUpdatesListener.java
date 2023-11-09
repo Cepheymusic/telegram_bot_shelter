@@ -150,6 +150,9 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 } else if (call_data.equals("sendDogReport")) {
                     SendMessage messageSampleReport = new SendMessage(idChat, EnumsInfo.SEND_REPORT.getText());
                     telegramBot.execute(messageSampleReport);
+                } else if (call_data.equals("sendCatReport")) {
+                    SendMessage messageSampleReport = new SendMessage(idChat, EnumsInfo.SEND_REPORT.getText());
+                    telegramBot.execute(messageSampleReport);
                 }
             }
         });
