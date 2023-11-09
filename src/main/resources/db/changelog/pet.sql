@@ -7,7 +7,7 @@ id bigserial primary key,
 name varchar(15),
 age integer,
 breed varchar(20),
-health_restrictions boolean,
+health_restrictions boolean default false,
 id_cat_adopter bigint references cat_adopter(id)
 --constraint "fk_cat_adopter" foreign key (id_cat_adopter) references cat_adopter(id)
 );
@@ -18,7 +18,7 @@ id bigserial primary key,
 name varchar(15),
 age integer,
 breed varchar(20),
-health_restrictions boolean,
+health_restrictions boolean default false,
 id_dog_adopter bigint references dog_adopter(id)
 --constraint "fk_dog_adopter" foreign key (id_dog_adopter) references dog_adopter(id)
 );
