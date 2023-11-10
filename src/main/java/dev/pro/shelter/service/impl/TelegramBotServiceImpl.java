@@ -49,7 +49,7 @@ public class TelegramBotServiceImpl implements TelegramBotService {
         } catch (Exception ex) {
             result = new SendMessage(idChat, "Ошибка формата данных");
             telegramBot.execute(result);
-            logger.warn("from chat with id {} was sent incorrect request {}, cotnact data was not saved", idChat, contactMessage);
+            logger.warn("from chat with id {} was sent incorrect request {}, contact data was not saved", idChat, contactMessage);
             return;
         }
         usersService.updateUser(user);
@@ -63,38 +63,43 @@ public class TelegramBotServiceImpl implements TelegramBotService {
         Report report = new Report();
         SendMessage result;
         try {
-            long adopterId = catAdopterService.readCatAdopterIdFromChatId(idChat);
-            LocalDate reportDate = LocalDate.now();
-            if (catAdopterService.existsCatAdopterByChatId(idChat)) {
-                LocalDate lastReportDate = catAdopterService.readStartDate(adopterId).plusDays(30);
-                report.setLastReportDate(lastReportDate);
-            } else if
-            (catAdopterService.existsCatAdopterByChatId(idChat)) {
-                LocalDate lastReportDate = dogAdopterService.readStartDate(adopterId).plusDays(30);
-                report.setLastReportDate(lastReportDate);
-            }
+//            long adopterId = catAdopterService.readCatAdopterIdFromChatId(idChat);
+//            LocalDate reportDate = LocalDate.now();
+//            if (catAdopterService.existsCatAdopterByChatId(idChat)) {
+//                LocalDate lastReportDate = catAdopterService.readStartDate(adopterId).plusDays(30);
+//                report.setLastReportDate(lastReportDate);
+//            } else {
+//                LocalDate lastReportDate = dogAdopterService.readStartDate(adopterId).plusDays(30);
+//                report.setLastReportDate(lastReportDate);
+//            }
 //            Byte[] photo = new Byte[]{};//тут метод, вынимающий фото из ТгБота
+            var users = usersService.createUser(idChat);
             String[] reportText = Parsers.parseReportText(reportMessage);
+            logger.info("parser ok");
             String diet = reportText[0];
+            logger.info("diet ok");
             String health = reportText[1];
+            logger.info("health ok");
             String habits = reportText[2];
-            report.getUsers().setIdUsers(adopterId);
-            report.setReportDate(reportDate);
-//            report.setLastReportDate(lastReportDate);
-//            report.setPhoto(photo);
+            logger.info("habits ok");
+            report.setUsers(users);
+            logger.info("user id was set");
             report.setDiet(diet);
+            logger.info("diet is set");
             report.setHealth(health);
+            logger.info("health is set");
             report.setHabits(habits);
+            logger.info("habits is set");
         } catch (Exception ex) {
             result = new SendMessage(idChat, "Ошибка формата данных");
             telegramBot.execute(result);
-            logger.warn("from chat with id {} was sent incorrect request {}, report was not saved", idChat, reportMessage);
+            logger.warn("from chat with id {} was sent incorrect request: {}, report was not saved", idChat, reportMessage);
             return;
         }
         reportService.update(report);
         result = new SendMessage(idChat, "Отчет сохранен");
         telegramBot.execute(result);
-        logger.info("for chat with id {} contact data was saved {}", idChat, reportMessage);
+        logger.info("for chat with id {} contact data was saved: {}", idChat, reportMessage);
     }
 
     @Override

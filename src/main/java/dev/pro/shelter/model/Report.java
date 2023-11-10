@@ -44,11 +44,11 @@ public class Report {
     public Report() {
     }
 
-    public Long getIdReports() {
+    public Long getId() {
         return id;
     }
 
-    public void setIdReports(long id) {
+    public void setId(long id) {
         id = id;
     }
 
@@ -123,4 +123,6 @@ public class Report {
     public void setSentMessage(boolean sentMessage) {
         this.sentMessage = sentMessage;
     }
+
+
 }

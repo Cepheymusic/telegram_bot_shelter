@@ -17,7 +17,7 @@ public class AdoptersController {
     }
 
     @PostMapping("/{type}/")
-    public void createAdopter(@PathVariable String type, @RequestBody long idUser, long idPet, String address) {
+    public void createAdopter(@PathVariable String type, @RequestParam long idUser, @RequestParam long idPet, @RequestParam String address) {
         switch (type) {
             case ("dog"):
                 dogAdopterService.registrationDogAdopter(idUser, idPet, address);
