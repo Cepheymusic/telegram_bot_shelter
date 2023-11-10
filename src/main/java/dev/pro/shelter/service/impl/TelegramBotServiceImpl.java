@@ -83,15 +83,8 @@ public class TelegramBotServiceImpl implements TelegramBotService {
             logger.info("health ok");
             String habits = reportText[2];
             logger.info("habits ok");
-
-//            long usersId = usersService.findUserIdFromChatId(idChat);
-//            logger.info("user id ok");
-//            report.getUsers().setIdUsers(usersId);
             report.setUsers(users);
             logger.info("user id was set");
-//            report.setReportDate(reportDate);
-//            report.setLastReportDate(lastReportDate);
-//            report.setPhoto(photo);
             report.setDiet(diet);
             logger.info("diet is set");
             report.setHealth(health);
