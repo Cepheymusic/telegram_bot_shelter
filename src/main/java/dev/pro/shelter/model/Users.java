@@ -76,7 +76,8 @@ public class Users {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Users users = (Users) o;
-        return Objects.equals(id, users.id) && Objects.equals(chatId, users.chatId) && Objects.equals(contact, users.contact);
+        return Objects.equals(id, users.id);
+//                && Objects.equals(chatId, users.chatId) && Objects.equals(contact, users.contact);
     }
 
     @Override

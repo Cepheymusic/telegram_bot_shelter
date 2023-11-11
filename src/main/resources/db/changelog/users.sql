@@ -4,7 +4,7 @@
 
 create table users(
 id bigserial primary key,
-chat_id bigint,
+chat_id bigint unique,
 name varchar(30),
 surname varchar(30),
 phone varchar(15),
