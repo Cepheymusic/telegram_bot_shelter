@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
+
 @Service
 public class TelegramBotServiceImpl implements TelegramBotService {
 
@@ -73,7 +74,7 @@ public class TelegramBotServiceImpl implements TelegramBotService {
 //                report.setLastReportDate(lastReportDate);
 //            }
 //            Byte[] photo = new Byte[]{};//тут метод, вынимающий фото из ТгБота
-            var users = usersService.createUser(idChat);
+            var users = usersService.findByChatId(idChat);
             String[] reportText = Parsers.parseReportText(reportMessage);
             logger.info("parser ok");
             String diet = reportText[0];

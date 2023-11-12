@@ -12,7 +12,6 @@ public class Report {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_users")
     private Users users;
-//    private Long idUsers;
 //     private Byte[] photo;
     private String diet;
     private String health;
