@@ -2,7 +2,6 @@ package dev.pro.shelter.model;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity(name = "cat")
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

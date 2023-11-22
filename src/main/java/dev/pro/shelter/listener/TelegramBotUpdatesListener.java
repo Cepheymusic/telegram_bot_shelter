@@ -7,7 +7,7 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
-import dev.pro.shelter.model.Contact;
+
 import dev.pro.shelter.model.EnumsInfo;
 import dev.pro.shelter.model.EnumsInfo2;
 import dev.pro.shelter.repository.UsersRepository;
@@ -15,9 +15,6 @@ import dev.pro.shelter.service.KeyboardMarkup;
 import dev.pro.shelter.service.TelegramBotService;
 import dev.pro.shelter.service.UsersService;
 
-import dev.pro.shelter.service.impl.TelegramBotServiceImpl;
-import dev.pro.shelter.service.impl.UsersServiceImpl;
-import dev.pro.shelter.tools.Parsers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

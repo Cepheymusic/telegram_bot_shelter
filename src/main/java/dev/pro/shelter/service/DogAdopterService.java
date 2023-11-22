@@ -1,6 +1,5 @@
 package dev.pro.shelter.service;
 
-import dev.pro.shelter.model.Dog;
 import dev.pro.shelter.model.DogAdopter;
 
 import java.time.LocalDate;

@@ -1,6 +1,5 @@
 package dev.pro.shelter.controller;
 
-import dev.pro.shelter.model.Cat;
 import dev.pro.shelter.model.Dog;
 import dev.pro.shelter.repository.DogRepository;
 import org.junit.jupiter.api.AfterEach;

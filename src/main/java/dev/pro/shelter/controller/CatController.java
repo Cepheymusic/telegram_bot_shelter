@@ -2,7 +2,6 @@ package dev.pro.shelter.controller;
 
 import dev.pro.shelter.model.Cat;
 import dev.pro.shelter.service.CatService;
-import dev.pro.shelter.service.DogService;
 import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/cat")
