@@ -2,7 +2,6 @@ package dev.pro.shelter.service.impl;
 
 import dev.pro.shelter.exception.CatNotFoundException;
 import dev.pro.shelter.model.Cat;
-import dev.pro.shelter.model.CatAdopter;
 import dev.pro.shelter.repository.CatRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

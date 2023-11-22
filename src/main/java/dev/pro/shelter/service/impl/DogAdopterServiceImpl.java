@@ -70,7 +70,7 @@ public class DogAdopterServiceImpl implements DogAdopterService {
     public DogAdopter readDogAdopterByUserId(long userId) {
         Optional<DogAdopter> adopter = repository.findByUsersId(userId);
         if (adopter.isEmpty()) {
-            throw new DogNotFoundException("Желающего забрать собаку человека с таким id нет");
+            throw new UsersException("Желающего забрать собаку человека с таким id нет");
         }
         return adopter.get();
     }

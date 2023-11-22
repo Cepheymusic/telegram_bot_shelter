@@ -71,7 +71,7 @@ public class CatAdopterServiceImpl implements CatAdopterService {
     public CatAdopter readCatAdopterByUserId(long userId) {
         Optional<CatAdopter> adopter = repository.findByUsersId(userId);
         if (adopter.isEmpty()) {
-            throw new CatNotFoundException("Желающего забрать кота человека с таким id нет");
+            throw new UsersException("Желающего забрать кота человека с таким id нет");
         }
         return adopter.get();
     }

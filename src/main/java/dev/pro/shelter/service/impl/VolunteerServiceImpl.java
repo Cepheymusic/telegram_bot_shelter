@@ -1,6 +1,5 @@
 package dev.pro.shelter.service.impl;
 
-import dev.pro.shelter.model.Volunteer;
 import dev.pro.shelter.repository.VolunteerRepository;
 import dev.pro.shelter.service.VolunteerService;
 import org.springframework.stereotype.Service;
