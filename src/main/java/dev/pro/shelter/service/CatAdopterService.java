@@ -9,7 +9,7 @@ public interface CatAdopterService {
 
     CatAdopter readCatAdopter(long id);
 
-    CatAdopter updateCatAdopter(long idUser);
+    CatAdopter updateCatAdopter(long idUser, CatAdopter catAdopter);
 
     CatAdopter deleteCatAdopter(long id);
     LocalDate readStartDate(long id);

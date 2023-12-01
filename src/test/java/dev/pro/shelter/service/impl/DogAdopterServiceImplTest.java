@@ -61,14 +61,15 @@ class DogAdopterServiceImplTest {
     void updateDogAdopter_dogAdopterWithoutInDb_returnUsersException() {
         when(repository.findByUsersId(1L)).thenReturn(Optional.empty());
         UsersException ex = assertThrows(UsersException.class,
-                () -> underTest.updateDogAdopter(1L));
+                () -> underTest.updateDogAdopter(1L, dogAdopter));
         assertEquals("Желающего забрать собаку человека с таким id нет", ex.getMessage());
     }
 
     @Test
     void updateDogAdopter_dogAdopterWithInDb_updateAndReturnDogAdopter() {
+        when(repository.save(dogAdopter)).thenReturn(dogAdopter);
         when(repository.findByUsersId(1L)).thenReturn(Optional.of(dogAdopter));
-        DogAdopter result = underTest.updateDogAdopter(1L);
+        DogAdopter result = underTest.updateDogAdopter(1L, dogAdopter);
         assertEquals(dogAdopter, result);
     }
 

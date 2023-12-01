@@ -9,7 +9,7 @@ public interface DogAdopterService {
 
     DogAdopter readDogAdopter(long id);
 
-    DogAdopter updateDogAdopter(long idUser);
+    DogAdopter updateDogAdopter(long idUser, DogAdopter dogAdopter);
 
     DogAdopter deleteDogAdopter(long id);
     LocalDate readStartDate(long id);

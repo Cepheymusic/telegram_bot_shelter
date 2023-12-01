@@ -46,9 +46,12 @@ public class DogAdopterServiceImpl implements DogAdopterService {
     }
 
     @Override
-    public DogAdopter updateDogAdopter(long idUser) {
-        return repository.findByUsersId(idUser).orElseThrow(()->new UsersException("Желающего забрать собаку человека " +
-                "с таким id нет"));
+    public DogAdopter updateDogAdopter(long idUser, DogAdopter dogAdopter) {
+        if(repository.findByUsersId(idUser).isEmpty()) {
+            throw new UsersException("Желающего забрать собаку человека " +
+                    "с таким id нет");
+        }
+        return repository.save(dogAdopter);
     }
 
     @Override
