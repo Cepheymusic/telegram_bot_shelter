@@ -9,7 +9,7 @@ import java.util.List;
 public interface ReportService {
     void update(Report report);
     List<Report> readAllDailyReport();
-    void createWarning(long id, String warn);
+    void createWarning(long chatId, String warn);
 //    LocalDate readLastDate(long id);
 
     LocalDate readDailyReportMaxData(long idUsers);

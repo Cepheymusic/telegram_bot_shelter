@@ -65,13 +65,14 @@ class CatAdopterServiceImplTest {
     void updateCatAdopter_catAdopterWithoutInDb_returnUsersException() {
         when(repository.findByUsersId(1L)).thenReturn(Optional.empty());
         UsersException ex = assertThrows(UsersException.class,
-                () -> underTest.updateCatAdopter(1L));
+                () -> underTest.updateCatAdopter(1L, catAdopter));
         assertEquals("Желающего забрать кота человека с таким id нет", ex.getMessage());
     }
     @Test
     void updateCatAdopter_catAdopterWithInDb_updateAndReturnCatAdopter() {
+        when(repository.save(catAdopter)).thenReturn(catAdopter);
         when(repository.findByUsersId(1L)).thenReturn(Optional.of(catAdopter));
-        CatAdopter result = underTest.updateCatAdopter(1L);
+        CatAdopter result = underTest.updateCatAdopter(1L, catAdopter);
         assertEquals(catAdopter, result);
     }
 

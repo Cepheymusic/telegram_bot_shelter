@@ -46,9 +46,12 @@ public class CatAdopterServiceImpl implements CatAdopterService {
     }
 
     @Override
-    public CatAdopter updateCatAdopter(long idUser) {
-        return repository.findByUsersId(idUser).orElseThrow(()->new UsersException("Желающего забрать кота человека " +
-                "с таким id нет"));
+    public CatAdopter updateCatAdopter(long idUser, CatAdopter catAdopter) {
+        if(repository.findByUsersId(idUser).isEmpty()) {
+            throw new UsersException("Желающего забрать кота человека с таким id нет");
+        } else {
+            return repository.save(catAdopter);
+        }
     }
 
     @Override
